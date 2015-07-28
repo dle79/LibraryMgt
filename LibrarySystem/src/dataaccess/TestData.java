@@ -1,14 +1,16 @@
 package dataaccess;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import business.*;
+import business.Address;
+import business.Author;
+import business.Book;
+import business.LibraryMember;
 
 public class TestData {
-	//List<LibraryMember> members = new ArrayList<LibraryMember>();
+
 	@SuppressWarnings("serial")
 
 
@@ -69,14 +71,31 @@ public class TestData {
 		}
 	};
 
+	@SuppressWarnings("serial")
+	List<LibraryMember> allMembers = new ArrayList<LibraryMember>() {
+		{
+			add(new LibraryMember("984520", "Tyler", "Swift", "737-333-1213", new Address("mulholland Dr.", "Los Angels", "CA", "52332")));
+			add(new LibraryMember("984521", "Tom", "Cruise", "720-321-4561", new Address("S. queen St.", "New York", "NY", "62311")));
+			add(new LibraryMember("984522", "Johnny", "Depp", "734-345-4531", new Address("N capital Dr.", "Dallas", "TX", "63412")));
+			add(new LibraryMember("984523", "Katy", "Perry", "777-567-9867", new Address("disneyworld Ave.", "Miami", "FL", "59876")));
+
+		}
+	};
+
 	public static void main(String[] args) {
 		TestData td = new TestData();
 		td.bookData();
-		//td.libraryMemberData();
+		td.libraryMemberData();
 		td.userData();
 		DataAccess da = new DataAccessFacade();
 		System.out.println(da.readBooksMap());
 		System.out.println(da.readUserMap());
+		System.out.println(da.readMemberMap());
+	}
+
+	private void libraryMemberData() {
+		DataAccessFacade.loadMemberMap(allMembers);
+
 	}
 	///create books
 	public void bookData() {

@@ -95,7 +95,6 @@ public class WindowsController implements Initializable {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	@FXML
