@@ -13,6 +13,7 @@ final public class LibraryMember extends Person {
 		record = new CheckoutRecord();
 	}
 
+
 	public String getMemberId() {
 		return memberId;
 	}

@@ -1,6 +1,10 @@
 package business;
 
-public class CheckoutRecordEntry {
+import java.io.Serializable;
+
+public class CheckoutRecordEntry implements Serializable {
+
+	private static final long serialVersionUID = -8869021564644625554L;
 	private String checkoutDate;
 	private String dueDate;
 	private BookCopy copy;
@@ -27,11 +31,10 @@ public class CheckoutRecordEntry {
 		this.dueDate = dueDate;
 	}
 
-
 	@Override
 	public String toString() {
-		return "CheckoutRecordEntry [checkoutDate=" + checkoutDate + ", dueDate=" + dueDate + ", copyNum=" + copy.getCopyNum() + "]";
+		return "CheckoutRecordEntry [checkoutDate=" + checkoutDate + ", dueDate=" + dueDate + ", copyNum="
+				+ copy.getCopyNum() + "]";
 	}
-
 
 }

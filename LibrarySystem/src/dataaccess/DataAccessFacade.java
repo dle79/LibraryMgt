@@ -66,8 +66,14 @@ public class DataAccessFacade implements DataAccess {
 
 	}
 
+	@Override
 	public void updateMember(LibraryMember member){
 		saveNewMember(member);
+	}
+
+	@Override
+	public void updateBook(Book book) {
+		saveNewBook(book);
 	}
 
 	@Override
@@ -186,6 +192,10 @@ public class DataAccessFacade implements DataAccess {
 		}
 		private static final long serialVersionUID = 5399827794066637059L;
 	}
+
+
+
+
 
 
 

@@ -14,16 +14,8 @@ public class CheckoutRecord implements Serializable {
 		entries = new ArrayList<CheckoutRecordEntry>();
 	}
 
-//	private CheckoutRecord(List<CheckoutRecordEntry> entries) {
-//		this.entries = entries;
-//	}
-
 	public List<CheckoutRecordEntry> getEntries() {
 		return entries;
-	}
-
-	public void setEntries(List<CheckoutRecordEntry> entries) {
-		this.entries = entries;
 	}
 
 	@Override

@@ -20,6 +20,7 @@ public interface DataAccess {
 
 	//save new book
 	public void saveNewBook(Book book);
+	public void updateBook(Book book);       // added by us
 
 	//////read methods
 	public HashMap<String,Book> readBooksMap();

@@ -10,6 +10,7 @@ import business.Address;
 import business.Author;
 import business.Book;
 import business.BookCopy;
+import business.CheckoutRecord;
 import business.CheckoutRecordEntry;
 import business.LibraryMember;
 import dataaccess.Auth;
@@ -31,8 +32,8 @@ public class SystemController implements ControllerInterface {
 
 	}
 
-	public static SystemController getInstance(){
-		if(sysController == null)
+	public static SystemController getInstance() {
+		if (sysController == null)
 			return new SystemController();
 		return sysController;
 
@@ -41,11 +42,11 @@ public class SystemController implements ControllerInterface {
 	public void login(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, User> map = da.readUserMap();
-		if(!map.containsKey(id)) {
+		if (!map.containsKey(id)) {
 			throw new LoginException("ID " + id + " not found");
 		}
 		String passwordFound = map.get(id).getPassword();
-		if(!passwordFound.equals(password)) {
+		if (!passwordFound.equals(password)) {
 			throw new LoginException("Passord does not match");
 		}
 		currentAuth = map.get(id).getAuthorization();
@@ -54,25 +55,23 @@ public class SystemController implements ControllerInterface {
 
 	/**
 	 * This method checks if memberId already exists -- if so, it cannot be
-	 * added as a new member, and an exception is thrown.
-	 * If new, creates a new LibraryMember based on
-	 * input data and uses DataAccess to store it.
+	 * added as a new member, and an exception is thrown. If new, creates a new
+	 * LibraryMember based on input data and uses DataAccess to store it.
 	 *
 	 */
-	public void addNewMember(String memberId, String firstName, String lastName,
-			String telNumber, Address addr) throws LibrarySystemException {
-		if(searchMember(memberId) == null){
+	public void addNewMember(String memberId, String firstName, String lastName, String telNumber, Address addr)
+			throws LibrarySystemException {
+		if (searchMember(memberId) == null) {
 			DataAccess da = new DataAccessFacade();
 			da.saveNewMember(new LibraryMember(memberId, firstName, lastName, telNumber, addr));
-		}else{
+		} else {
 			throw new LibrarySystemException("MemberID already exists!");
 		}
 	}
 
 	/**
-	 * Reads data store for a library member with specified id.
-	 * Ids begin at 1001...
-	 * Returns a LibraryMember if found, null otherwise
+	 * Reads data store for a library member with specified id. Ids begin at
+	 * 1001... Returns a LibraryMember if found, null otherwise
 	 *
 	 */
 	public LibraryMember searchMember(String memberId) {
@@ -84,58 +83,92 @@ public class SystemController implements ControllerInterface {
 	 * Same as creating a new member (because of how data is stored)
 	 */
 	@Override
-	public void updateMemberInfo(String memberId, String firstName, String lastName, String telNumber, Address addr)
-			throws LibrarySystemException {
-		if(searchMember(memberId) == null){
-			DataAccess da = new DataAccessFacade();
-			da.updateMember(new LibraryMember(memberId, firstName, lastName, telNumber, addr));
-		}else{
-			throw new LibrarySystemException("MemberID already exists!");
+	public void updateMemberInfo(LibraryMember member) throws LibrarySystemException {
+		DataAccess da = new DataAccessFacade();
+		if (searchMember(member.getMemberId()) == null) {
+			throw new LibrarySystemException("MemberID does not exist!");
+		} else {
+			da.updateMember(member);
+		}
+	}
+
+	@Override
+	public void updateBookInfo(Book book) throws LibrarySystemException {
+		DataAccess da = new DataAccessFacade();
+		if (searchBook(book.getIsbn()) == null) {
+			throw new LibrarySystemException("This book does not exist!");
+		} else {
+			da.updateBook(book);
 		}
 	}
 
 	/**
-	 * Looks up Book by isbn from data store. If not found, an exception is thrown.
-	 * If no copies are available for checkout, an exception is thrown.
-	 * If found and a copy is available, member's checkout record is
-	 * updated and copy of this publication is set to "not available"
+	 * Looks up Book by isbn from data store. If not found, an exception is
+	 * thrown. If no copies are available for checkout, an exception is thrown.
+	 * If found and a copy is available, member's checkout record is updated and
+	 * copy of this publication is set to "not available"
 	 */
 	@Override
-	public void checkoutBook(String memberId, String isbn)
-			throws LibrarySystemException {
+	public void checkoutBook(String memberId, String isbn) throws LibrarySystemException {
 		LibraryMember member = searchMember(memberId);
-		
-		// 1. If ID is not found, the system will display a message indicating this
-		if(member == null){
+		CheckoutRecord recordOfMember = member.getRecord();
+		printCheckoutRecord(memberId);
+
+		/**
+		 * If ID is not found, the system will display
+		 * a message indicating  this
+		 */
+
+		if (member == null) {
 			log.info("MemberID: " + memberId + " can not be found!");
 			throw new LibrarySystemException("MemberID: " + memberId + " can not be found!");
 		}
-		// 2. if the requested book is not found or if none of the  copies of the book
-		//    are available, the system will return a message indicating that the item is not available
+
+		/**
+		 * If the requested book is not found or if none of the copies of the book
+		 *  are available, the system will return a message indicating that the item is not available
+		 */
+
 		Book book = searchBook(isbn);
-		if(book == null || !book.isAvailable()){
+		if (book == null || !book.isAvailable()) {
 			log.info("Sorry, this book " + isbn + " is not available!");
 			throw new LibrarySystemException("Sorry, this book " + isbn + " is not available!");
-		}else {
-			log.info("book available: " + book.isAvailable());
-			BookCopy availableCopyOfBook = book.getNextAvailableCopy();
+		} else {
+			log.finer("book available: " + book.isAvailable());
 
+			/**
+			 *  If both member ID and book ID are found and a copy is available,
+			 *  a new checkout record entry is created containing the copy of the requested book
+			 *  and the checkout date and due date
+			 */
+			BookCopy availableCopy = book.getNextAvailableCopy();
 			LocalDate currDate = LocalDate.now();
-			LocalDate returnDate = currDate.plusDays(30);
+			LocalDate returnDate = currDate.plusDays(book.getMaxCheckoutLength());
 			String checkoutDate = currDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
 			String dueDate = returnDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-			log.info("checkoutDate: "+ checkoutDate + " dueDate :" + dueDate);
-			List<CheckoutRecordEntry> entriesOfMember = member.getRecord().getEntries();
-			CheckoutRecordEntry entry = new CheckoutRecordEntry(checkoutDate, dueDate, availableCopyOfBook);
-			member.getRecord().getEntries().add(entry);
-			log.info(member.getRecord().getEntries().toString());
-		}
-		// 3.  If both member ID and book ID are found and a copy is available, a new checkout record entry is created
-		//    containing the copy of the requested book and the checkout date and due date
+			log.info("checkoutDate: " + checkoutDate + " dueDate :" + dueDate);
+			List<CheckoutRecordEntry> entriesOfRecord = recordOfMember.getEntries();
 
-		// 4. This checkout entry is then added to the member’s checkout record.
-		// 		The copy that is checked out is marked as unavailable. The updated checkout
-		//		record is displayed on the UI and is also persisted.
+			CheckoutRecordEntry entry = new CheckoutRecordEntry(checkoutDate, dueDate, availableCopy);
+
+			/**
+			 *  This checkout entry is then added to the member’s checkout record.
+			 *  The copy that is checked out is marked as unavailable.
+			 */
+
+			entriesOfRecord.add(entry);
+			availableCopy.changeAvailability();
+
+			book.updateCopies(availableCopy);
+			updateBookInfo(book);
+
+			member.setRecord(recordOfMember);
+			updateMemberInfo(member);
+
+			// The updated checkout record is displayed on the UI and is also persisted.
+			printCheckoutRecord(memberId);
+		}
+
 	}
 
 	@Override
@@ -145,47 +178,42 @@ public class SystemController implements ControllerInterface {
 	}
 
 	/**
-	 * Looks up book by isbn to see if it exists, throw exception.
-	 * Else add the book to storage
+	 * Looks up book by isbn to see if it exists, throw exception. Else add the
+	 * book to storage
 	 */
 	public boolean addBook(String isbn, String title, int maxCheckoutLength, List<Author> authors)
 			throws LibrarySystemException {
 
-		if(searchBook(isbn) == null){
+		if (searchBook(isbn) == null) {
 			DataAccess da = new DataAccessFacade();
 			da.saveNewBook(new Book(isbn, title, maxCheckoutLength, authors));
 			return true;
-		}else{
+		} else {
 			throw new LibrarySystemException("Book already exists!");
 		}
 	}
 
-
 	public boolean addBookCopy(String isbn) throws LibrarySystemException {
 		Book book = searchBook(isbn);
-		if(book == null) throw new LibrarySystemException("No book with isbn " + isbn
-			+ " is in the library collection!");
+		if (book == null)
+			throw new LibrarySystemException("No book with isbn " + isbn + " is in the library collection!");
 		book.addCopy();
 		return true;
 	}
 
+	@Override
+	public void printCheckoutRecord(String memberId) throws LibrarySystemException {
+		DataAccess da = new DataAccessFacade();
+		LibraryMember member = da.searchMember(memberId);
+		log.info(member.getRecord().toString());
+	}
 
 	public static void main(String[] args) throws LibrarySystemException {
 		try {
-			new SystemController().checkoutBook("984521", "23-11451");
+			new SystemController().checkoutBook("984521", "28-12331");
 		} catch (LibrarySystemException e) {
 			System.out.println(e.getMessage());
 		}
 	}
-
-
-
-
-
-
-
-
-
-
 
 }
