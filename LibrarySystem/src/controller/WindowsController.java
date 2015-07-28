@@ -20,7 +20,6 @@ import javafx.scene.input.MouseEvent;
 public class WindowsController implements Initializable {
 
 	private static final Logger log = Logger.getLogger(WindowsController.class.getName());
-	private static final String LOG_HEADER = "======= loginForm " + WindowsController.class.getName() + "=======";
 
 	private SystemController sysController = null;
 
@@ -56,19 +55,19 @@ public class WindowsController implements Initializable {
 	private void actionOnLogin() throws LoginException {
 		String username = usernameTfd.getText();
 		String password = passwordTfd.getText();
-		log.info(LOG_HEADER);
+
 		log.info("user " + username);
 		log.info("pass " + password);
 		sysController = SystemController.getInstance();
 		try {
 			sysController.login(username, password);
 		} catch (LoginException e) {
-			log.warning(LOG_HEADER + e.getMessage());
+			log.warning(e.getMessage());
 			promptLabel.setText(e.getMessage());
 			throw e;
 		}
 		promptLabel.setText("");
-		log.info(LOG_HEADER + " successful login!");
+		log.info("Successful login!");
 	}
 
 	@FXML
