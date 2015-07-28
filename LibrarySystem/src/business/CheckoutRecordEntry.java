@@ -5,10 +5,10 @@ public class CheckoutRecordEntry {
 	private String dueDate;
 	private BookCopy copy;
 
-	private CheckoutRecordEntry(String checkoutDate, String dueDate, BookCopy copy) {
+	public CheckoutRecordEntry(String checkoutDate, String dueDate, BookCopy copy) {
 		this.checkoutDate = checkoutDate;
 		this.dueDate = dueDate;
-		this.setCopy(copy);
+		this.copy = copy;
 	}
 
 	public String getCheckoutDate() {
@@ -27,12 +27,11 @@ public class CheckoutRecordEntry {
 		this.dueDate = dueDate;
 	}
 
-	public BookCopy getCopy() {
-		return copy;
+
+	@Override
+	public String toString() {
+		return "CheckoutRecordEntry [checkoutDate=" + checkoutDate + ", dueDate=" + dueDate + ", copyNum=" + copy.getCopyNum() + "]";
 	}
 
-	public void setCopy(BookCopy copy) {
-		this.copy = copy;
-	}
 
 }

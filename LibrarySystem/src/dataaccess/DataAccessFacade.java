@@ -66,7 +66,11 @@ public class DataAccessFacade implements DataAccess {
 
 	}
 
-	//public void updateMember(LibraryMember member)
+	public void updateMember(LibraryMember member){
+		saveNewMember(member);
+	}
+
+	@Override
 	//save new lendable item
 	public void saveNewBook(Book book) {
 		HashMap<String, Book> bookMap = readBooksMap();
