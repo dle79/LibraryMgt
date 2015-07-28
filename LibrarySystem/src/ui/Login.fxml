@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -30,7 +31,7 @@
       <HBox alignment="CENTER" layoutX="10.0" layoutY="57.0">
          <children>
             <Label prefHeight="14.0" prefWidth="78.0" text="Password" />
-            <PasswordField fx:id="passwordTfd" />
+            <PasswordField fx:id="passwordTfd"  onKeyReleased="#handleLoginBtnOnKeyReleased"/>
          </children>
          <VBox.margin>
             <Insets top="20.0" />
@@ -38,12 +39,12 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="45.0" prefWidth="294.0">
          <children>
-            <Label fx:id="promptLabel" prefHeight="14.0" prefWidth="141.0">
+            <Label fx:id="promptLabel" prefHeight="14.0" prefWidth="141.0" textFill="#f20000">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
             </Label>
-            <Button fx:id="loginBtn" alignment="CENTER" mnemonicParsing="false" text="Login">
+            <Button fx:id="loginBtn" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleloginBtn" text="Login">
                <FlowPane.margin>
                   <Insets top="20.0" />
                </FlowPane.margin>

@@ -13,6 +13,19 @@ import exception.LoginException;
 public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;
 
+	private static SystemController sysController = null;
+
+	private SystemController() {
+
+	}
+
+	public static SystemController getInstance(){
+		if(sysController == null)
+			return new SystemController();
+		return sysController;
+
+	}
+
 	public void login(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, User> map = da.readUserMap();
@@ -87,7 +100,12 @@ public class SystemController implements ControllerInterface {
 
 
 	public static void main(String[] args) throws LibrarySystemException {
-
+		try {
+			new SystemController().login("101", "xyzz");
+		} catch (LoginException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
 	}
 
 
