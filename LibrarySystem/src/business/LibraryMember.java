@@ -10,6 +10,7 @@ final public class LibraryMember extends Person {
 	public LibraryMember(String id, String firstName, String lastName, String telephoneNum, Address address) {
 		super(firstName, lastName, telephoneNum, address);
 		this.memberId = id;
+		record = new CheckoutRecord();
 	}
 
 	public String getMemberId() {
