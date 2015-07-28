@@ -74,7 +74,6 @@ public class WindowsController implements Initializable {
 		try {
 			Stage stage = (Stage) promptLabel.getScene().getWindow();
 			stage.close();
-			new LibrarySystem().start(new Stage());
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
