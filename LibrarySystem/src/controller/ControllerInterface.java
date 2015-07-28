@@ -1,9 +1,11 @@
-package business;
+package controller;
 
 import java.util.List;
 
+import business.Book;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
+import exception.LibrarySystemException;
 
 public interface ControllerInterface {
 //	public void addNewMember(String memberId, String firstName, String lastName,
@@ -18,5 +20,5 @@ public interface ControllerInterface {
 //	public void printCheckoutRecord(String memberId) throws LibrarySystemException;
 //	public CopyStatus computeStatus(BookCopy copy);
 	public Book searchBook(String isbn);
-	
+
 }
