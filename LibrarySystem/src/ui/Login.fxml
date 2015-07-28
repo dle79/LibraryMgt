@@ -12,7 +12,7 @@
    <children>
       <FlowPane alignment="CENTER">
          <children>
-            <Label prefHeight="47.0" prefWidth="163.0" text="MUM Library System">
+            <Label prefHeight="47.0" prefWidth="173.0" text="MUM Library System">
                <font>
                   <Font size="18.0" />
                </font>
@@ -31,7 +31,7 @@
       <HBox alignment="CENTER" layoutX="10.0" layoutY="57.0">
          <children>
             <Label prefHeight="14.0" prefWidth="78.0" text="Password" />
-            <PasswordField fx:id="passwordTfd"  onKeyReleased="#handleLoginBtnOnKeyReleased"/>
+            <PasswordField fx:id="passwordTfd" onKeyReleased="#handleLoginBtnOnKeyReleased" />
          </children>
          <VBox.margin>
             <Insets top="20.0" />
@@ -52,7 +52,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="resetBtn" mnemonicParsing="false" onMouseClicked="#handleResetBtn" onKeyReleased="#handleResetBtnOnKeyReleased" text="Reset">
+            <Button fx:id="resetBtn" mnemonicParsing="false" onKeyReleased="#handleResetBtnOnKeyReleased" onMouseClicked="#handleResetBtn" text="Reset">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
