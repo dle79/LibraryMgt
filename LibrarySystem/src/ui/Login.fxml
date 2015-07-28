@@ -52,7 +52,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="resetBtn" mnemonicParsing="false" onMouseClicked="#handleResetBtn" text="Reset">
+            <Button fx:id="resetBtn" mnemonicParsing="false" onMouseClicked="#handleResetBtn" onKeyReleased="#handleResetBtnOnKeyReleased" text="Reset">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>

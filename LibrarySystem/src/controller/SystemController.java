@@ -34,7 +34,7 @@ public class SystemController implements ControllerInterface {
 		}
 		String passwordFound = map.get(id).getPassword();
 		if(!passwordFound.equals(password)) {
-			throw new LoginException("Passord does not match password on record");
+			throw new LoginException("Passord does not match");
 		}
 		currentAuth = map.get(id).getAuthorization();
 

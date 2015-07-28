@@ -83,13 +83,26 @@ public class WindowsController implements Initializable {
 				e.printStackTrace();
 			}
 		}
+
 	}
 
 	@FXML
 	private void handleResetBtn(MouseEvent event) {
+		actionOnReset();
+	}
+
+	@FXML
+	private void handleResetBtnOnKeyReleased(KeyEvent event) {
+		if (event.getCode() == KeyCode.ENTER) {
+			actionOnReset();
+		}
+	}
+
+	private void actionOnReset() {
 		usernameTfd.setText("");
 		passwordTfd.setText("");
 		promptLabel.setText("");
+		loginBtn.setEffect(null);
 	}
 
 }
