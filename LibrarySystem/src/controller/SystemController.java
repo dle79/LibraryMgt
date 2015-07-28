@@ -108,6 +108,7 @@ public class SystemController implements ControllerInterface {
 	 * If found and a copy is available, member's checkout record is updated and
 	 * copy of this publication is set to "not available"
 	 */
+	@SuppressWarnings("unused")
 	@Override
 	public void checkoutBook(String memberId, String isbn) throws LibrarySystemException {
 		LibraryMember member = searchMember(memberId);
@@ -144,8 +145,8 @@ public class SystemController implements ControllerInterface {
 			BookCopy availableCopy = book.getNextAvailableCopy();
 			LocalDate currDate = LocalDate.now();
 			LocalDate returnDate = currDate.plusDays(book.getMaxCheckoutLength());
-			String checkoutDate = currDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-			String dueDate = returnDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+			String checkoutDate = currDate.format(DateTimeFormatter.ofPattern(DataAccessFacade.DATE_PATTERN));
+			String dueDate = returnDate.format(DateTimeFormatter.ofPattern(DataAccessFacade.DATE_PATTERN));
 			log.info("checkoutDate: " + checkoutDate + " dueDate :" + dueDate);
 			List<CheckoutRecordEntry> entriesOfRecord = recordOfMember.getEntries();
 
@@ -169,6 +170,12 @@ public class SystemController implements ControllerInterface {
 			printCheckoutRecord(memberId);
 		}
 
+	}
+
+	public CheckoutRecord getCheckoutRecordByMemberId(String memberId){
+		DataAccess da = new DataAccessFacade();
+		LibraryMember member = da.searchMember(memberId);
+		return member.getRecord();
 	}
 
 	@Override
@@ -203,10 +210,10 @@ public class SystemController implements ControllerInterface {
 
 	@Override
 	public void printCheckoutRecord(String memberId) throws LibrarySystemException {
-		DataAccess da = new DataAccessFacade();
-		LibraryMember member = da.searchMember(memberId);
-		log.info(member.getRecord().toString());
+		log.info(getCheckoutRecordByMemberId(memberId).toString());
 	}
+
+
 
 	public static void main(String[] args) throws LibrarySystemException {
 		try {

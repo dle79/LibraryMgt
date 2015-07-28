@@ -5,7 +5,6 @@ import java.util.List;
 import business.Address;
 import business.Author;
 import business.Book;
-import business.BookCopy;
 import business.LibraryMember;
 import exception.LibrarySystemException;
 
@@ -15,9 +14,6 @@ public interface ControllerInterface {
 
 	public LibraryMember searchMember(String memberId);
 
-	// public void updateMemberInfo(String memberId, String firstName, String
-	// lastName, String telNumber, Address addr)
-	// throws LibrarySystemException;
 	public void updateMemberInfo(LibraryMember member) throws LibrarySystemException;
 
 	public void checkoutBook(String memberId, String isbn) throws LibrarySystemException;
