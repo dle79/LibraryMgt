@@ -3,6 +3,9 @@ package ui;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -10,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 
 public class MainApp extends Application {
@@ -62,7 +66,15 @@ public class MainApp extends Application {
 			dialogStage.setScene(scene);
 			
 			dialogStage.setResizable(false);
-			
+			dialogStage.setOnCloseRequest(new EventHandler(){
+
+				@Override
+				public void handle(Event event) {
+					// TODO Auto-generated method stub
+					Platform.exit();
+				}
+				
+			});
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();
 		} catch(Exception e) {
