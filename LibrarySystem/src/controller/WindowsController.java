@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -12,10 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import ui.LibrarySystem;
 
 public class WindowsController implements Initializable {
 
@@ -48,11 +50,13 @@ public class WindowsController implements Initializable {
 		try {
 			actionOnLogin();
 		} catch (LoginException e) {
+			log.warning(e.getMessage());
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void actionOnLogin() throws LoginException {
+	private void actionOnLogin() throws LoginException, IOException {
 		String username = usernameTfd.getText();
 		String password = passwordTfd.getText();
 
@@ -62,12 +66,19 @@ public class WindowsController implements Initializable {
 		try {
 			sysController.login(username, password);
 		} catch (LoginException e) {
-			log.warning(e.getMessage());
 			promptLabel.setText(e.getMessage());
 			throw e;
 		}
 		promptLabel.setText("");
 		log.info("Successful login!");
+		try {
+			Stage stage = (Stage) promptLabel.getScene().getWindow();
+			stage.close();
+			new LibrarySystem().start(new Stage());
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -78,7 +89,9 @@ public class WindowsController implements Initializable {
 			try {
 				actionOnLogin();
 			} catch (LoginException e) {
-					loginBtn.setEffect(null);
+				loginBtn.setEffect(null);
+				log.warning(e.getMessage());
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
