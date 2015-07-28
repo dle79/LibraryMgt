@@ -64,7 +64,7 @@ public class WindowsController implements Initializable {
 		log.info("pass " + password);
 		sysController = SystemController.getInstance();
 		try {
-			sysController.login(username, password);
+			sysController.loginHandle(username, password);
 		} catch (LoginException e) {
 			promptLabel.setText(e.getMessage());
 			throw e;
@@ -74,7 +74,7 @@ public class WindowsController implements Initializable {
 		try {
 			Stage stage = (Stage) promptLabel.getScene().getWindow();
 			stage.close();
-			new LibrarySystem().start(new Stage());
+			
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();

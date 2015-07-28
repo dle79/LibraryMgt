@@ -30,7 +30,7 @@ public class SystemController implements ControllerInterface {
 
 	}
 
-	public void login(String id, String password) throws LoginException {
+	public void loginHandle(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, User> map = da.readUserMap();
 		if(!map.containsKey(id)) {
@@ -132,14 +132,6 @@ public class SystemController implements ControllerInterface {
 		return true;
 	}
 
-
-	public static void main(String[] args) throws LibrarySystemException {
-		try {
-			new SystemController().login("101", "xyzz");
-		} catch (LoginException e) {
-			System.out.println(e.getMessage());
-		}
-	}
 
 
 
