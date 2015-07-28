@@ -67,6 +67,7 @@ public class WindowsController implements Initializable {
 			throw e;
 		}
 		promptLabel.setText("");
+		log.info(LOG_HEADER + " successful login!");
 	}
 
 	@FXML
