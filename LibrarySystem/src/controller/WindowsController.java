@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -74,13 +75,14 @@ public class WindowsController implements Initializable {
 	private void handleLoginBtnOnKeyReleased(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			loginBtn.requestFocus();
+			loginBtn.setEffect(new DropShadow());
 			try {
 				actionOnLogin();
 			} catch (LoginException e) {
+					loginBtn.setEffect(null);
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	@FXML
