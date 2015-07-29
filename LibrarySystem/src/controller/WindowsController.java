@@ -49,13 +49,13 @@ public class WindowsController implements Initializable {
 	@FXML
 	private MenuBar menuBar;
 	
+	// Attributes for add LibraryMember (look at AddNewMember.fxml) 
 	@FXML
 	private Button closeNewMemberBtn;
 	
 	@FXML 
 	private Button saveNewMemberBtn;
 	
-	// Attributes for LibraryMember (look at AddNewMember.fxml) 
 	@FXML
 	private TextField memberIdTfd;
 	
@@ -80,6 +80,44 @@ public class WindowsController implements Initializable {
 	@FXML
 	private TextField memberZipTfd;
 	
+	// Attributes for edit LibraryMember (look at EditLibraryMember.fxml) 
+	@FXML
+	private Button closeEditMemberBtn;
+	
+	@FXML 
+	private Button saveEditMemberBtn;
+	
+	@FXML
+	private TextField editMemberIdTfd;
+	
+	@FXML
+	private TextField editMemberFirstNameTfd;
+	
+	@FXML
+	private TextField editMemberLastNameTfd;
+	
+	@FXML
+	private TextField editMemberPhoneTfd;
+	
+	@FXML
+	private TextField editMemberStreetTfd;
+	
+	@FXML
+	private TextField editMemberCityTfd;
+	
+	@FXML
+	private TextField editMemberStateTfd;
+	
+	@FXML
+	private TextField editMemberZipTfd;
+	
+	private void commonCloseButtonHandler(Button closeButton)
+	{
+		// get a handle to the stage
+	    Stage stage = (Stage) closeButton.getScene().getWindow();
+	    // do what you have to do
+	    stage.close();
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -201,10 +239,7 @@ public class WindowsController implements Initializable {
 	@FXML
 	private void closeNewMemberBtnAction()
 	{
-		// get a handle to the stage
-	    Stage stage = (Stage) closeNewMemberBtn.getScene().getWindow();
-	    // do what you have to do
-	    stage.close();
+	    commonCloseButtonHandler(closeNewMemberBtn);
 	}
 	
 	@FXML
@@ -221,13 +256,25 @@ public class WindowsController implements Initializable {
 					memberLastNameTfd.getText(),
 					memberPhoneTfd.getText(), address);
 			
-		    Stage stage = (Stage) saveNewMemberBtn.getScene().getWindow();
-		    // do what you have to do
-		    stage.close();
+			commonCloseButtonHandler(saveNewMemberBtn);
 		}
 		catch(LibrarySystemException ex)
 		{
 			ex.printStackTrace();
 		}
+	}
+	
+	// For Edit Library Member
+	private void disableEditLibraryPartial(boolean isDisable)
+	{	
+		saveEditMemberBtn.setDisable(isDisable);
+		editMemberIdTfd.setDisable(isDisable);
+		editMemberFirstNameTfd.setDisable(isDisable);
+		editMemberLastNameTfd.setDisable(isDisable);
+		editMemberPhoneTfd.setDisable(isDisable);
+		editMemberStreetTfd.setDisable(isDisable);
+		editMemberCityTfd.setDisable(isDisable);
+		editMemberStateTfd.setDisable(isDisable);
+		editMemberZipTfd.setDisable(isDisable);
 	}
 }
