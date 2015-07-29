@@ -30,11 +30,13 @@ final public class LibraryMember extends Person {
 		this.record = record;
 	}
 
+
 	@Override
 	public String toString() {
-		return "firstname:" + getFirstName() + ", lastname:"
-				+ getLastName() + ", telephone:" + getTelephone() + ", address:" + getAddress() + "";
+		return "LibraryMember [memberId=" + memberId + ", record=" + record + "]";
 	}
+
+	
 
 
 

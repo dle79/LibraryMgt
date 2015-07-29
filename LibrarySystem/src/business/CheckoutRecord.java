@@ -10,7 +10,7 @@ public class CheckoutRecord implements Serializable {
 	private static final long serialVersionUID = 7157555046172080729L;
 	private List<CheckoutRecordEntry> entries;
 
-	CheckoutRecord() {
+	public CheckoutRecord() {
 		entries = new ArrayList<CheckoutRecordEntry>();
 	}
 
