@@ -8,45 +8,41 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:controller="controller.WindowsController" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
+    <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput" VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+        <Menu mnemonicParsing="false" text="Add">
           <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
+            <MenuItem mnemonicParsing="false" onAction="#handleAddLibraryMemberAction" text="Library Member" />
+            <MenuItem mnemonicParsing="false" text="Librarian" />
+                  <MenuItem mnemonicParsing="false" text="Original Book" />
+                  <MenuItem mnemonicParsing="false" text="Book Copy" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
+            <MenuItem mnemonicParsing="false" text="Checkout Record" />
+            <MenuItem mnemonicParsing="false" text="Library Member" />
+            <MenuItem mnemonicParsing="false" text="Librarian" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false" text="Search">
           <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+            <MenuItem mnemonicParsing="false" text="Checkout Record of Library Member" />
+                  <MenuItem mnemonicParsing="false" text="Book" />
           </items>
         </Menu>
+            <Menu mnemonicParsing="false" text="Print">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
       </menus>
     </MenuBar>
   </children>
