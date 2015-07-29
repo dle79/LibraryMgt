@@ -208,23 +208,6 @@ public class WindowsController implements Initializable {
 	}
 
 	/**
-	 * Handle action related to input (in this case specifically only responds
-	 * to keyboard event CTRL-A).
-	 * 
-	 * @param event
-	 *            Input event.
-	 */
-	@FXML
-	private void handleKeyInput(final InputEvent event) {
-		if (event instanceof KeyEvent) {
-			final KeyEvent keyEvent = (KeyEvent) event;
-			if (keyEvent.isControlDown() && keyEvent.getCode() == KeyCode.A) {
-				addNewLibraryFunctionality();
-			}
-		}
-	}
-
-	/**
 	 * Perform functionality associated with "Add New Library Member" menu selection or CTRL-A.
 	 */
 	//Stage stageAddNewLibarayMember = null;
@@ -415,4 +398,21 @@ public class WindowsController implements Initializable {
 	
 	
 
+	/**
+	 * Handle action related to Edit Library Member to Menu item.
+	 * 
+	 * @param event
+	 *            Event on "Edit" Library Member menu item.
+	 */
+	@FXML
+	private void handleEditLibraryMemberAction(final ActionEvent event) {
+		editLibraryMemberFunctionality();
+	}
+	
+	/**
+	 * Perform functionality associated with "Edit Library Member" menu selection.
+	 */
+	private void editLibraryMemberFunctionality() {
+		
+	}
 }
