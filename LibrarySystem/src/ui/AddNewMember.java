@@ -1,5 +1,8 @@
 package ui;
 
+import controller.ControllerInterface;
+import controller.SystemController;
+import business.LibraryMember;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +12,11 @@ import javafx.stage.Stage;
 
 public class AddNewMember extends Application {
 
+	private LibraryMember libraryMemberObj = null;
+	public AddNewMember()
+	{
+		
+	}
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Scene scene = null;

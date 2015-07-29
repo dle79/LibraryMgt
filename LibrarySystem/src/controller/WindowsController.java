@@ -5,7 +5,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
+import business.Address;
+import business.LibraryMember;
 import ui.AddNewMember;
+import exception.LibrarySystemException;
 import exception.LoginException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,6 +48,37 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private MenuBar menuBar;
+	
+	@FXML
+	private Button closeNewMemberBtn;
+	
+	@FXML 
+	private Button saveNewMemberBtn;
+	
+	// Attributes for LibraryMember (look at AddNewMember.fxml) 
+	@FXML
+	private TextField memberIdTfd;
+	
+	@FXML
+	private TextField memberFirstNameTfd;
+	
+	@FXML
+	private TextField memberLastNameTfd;
+	
+	@FXML
+	private TextField memberPhoneTfd;
+	
+	@FXML
+	private TextField memberStreetTfd;
+	
+	@FXML
+	private TextField memberCityTfd;
+	
+	@FXML
+	private TextField memberStateTfd;
+	
+	@FXML
+	private TextField memberZipTfd;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -113,7 +147,13 @@ public class WindowsController implements Initializable {
 			actionOnReset();
 		}
 	}
-
+	private void actionOnReset() {
+		usernameTfd.setText("");
+		passwordTfd.setText("");
+		promptLabel.setText("");
+		loginBtn.setEffect(null);
+	}
+	
 	/**
 	 * Handle action related to Add Menu item.
 	 * 
@@ -145,22 +185,49 @@ public class WindowsController implements Initializable {
 	/**
 	 * Perform functionality associated with "Add New Library Member" menu selection or CTRL-A.
 	 */
+	//Stage stageAddNewLibarayMember = null;
 	private void addNewLibraryFunctionality() {
 		
 		try {
-			Stage stage = (Stage) menuBar.getScene().getWindow();
-			new AddNewMember().start(stage);
+			Stage stageAddNewLibarayMember = (Stage) menuBar.getScene().getWindow();
+			new AddNewMember().start(stageAddNewLibarayMember);
 			
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	private void actionOnReset() {
-		usernameTfd.setText("");
-		passwordTfd.setText("");
-		promptLabel.setText("");
-		loginBtn.setEffect(null);
-	}
 
+	@FXML
+	private void closeNewMemberBtnAction()
+	{
+		// get a handle to the stage
+	    Stage stage = (Stage) closeNewMemberBtn.getScene().getWindow();
+	    // do what you have to do
+	    stage.close();
+	}
+	
+	@FXML
+	private void saveNewMemberBtnAction()
+	{
+		Address address = new Address(memberStreetTfd.getText(), 
+				memberCityTfd.getText(), 
+				memberStateTfd.getText(), 
+				memberZipTfd.getText());
+		try
+		{
+			SystemController.getInstance().addNewMember(memberIdTfd.getText(), 
+					memberFirstNameTfd.getText(),
+					memberLastNameTfd.getText(),
+					memberPhoneTfd.getText(), address);
+			
+		    Stage stage = (Stage) saveNewMemberBtn.getScene().getWindow();
+		    // do what you have to do
+		    stage.close();
+		}
+		catch(LibrarySystemException ex)
+		{
+			ex.printStackTrace();
+		}
+	}
 }
