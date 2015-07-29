@@ -6,11 +6,14 @@ import java.io.Serializable;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
 import business.Book;
+import business.CheckoutRecordEntry;
 import business.LibraryMember;
 
 
@@ -22,8 +25,8 @@ public class DataAccessFacade implements DataAccess {
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir")
 			+ ((System.getProperty("os.name").startsWith("Windows"))? "\\src\\dataaccess\\storage" : "/src/dataaccess/storage");
-	
-	
+
+
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 
 
@@ -35,6 +38,21 @@ public class DataAccessFacade implements DataAccess {
 		}else{
 			return null;
 		}
+	}
+
+	public LibraryMember searchMemberByBook(String isbn, int copyNum) {
+		Collection<LibraryMember> members = readMemberMap().values();
+		//List<LibraryMember> membersOfbook = new ArrayList<>();
+		for(LibraryMember member: members){
+			List<CheckoutRecordEntry> entries = member.getRecord().getEntries();
+			for(CheckoutRecordEntry entry: entries){
+				if(entry.getCopy().getBook().getIsbn().equals(isbn) &&
+						entry.getCopy().getCopyNum() == copyNum){
+					return member;
+				}
+			}
+		}
+		return null;
 	}
 
 	public Book searchBook(String isbn) {

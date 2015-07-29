@@ -18,9 +18,9 @@ final public class LibraryMember extends Person {
 		return memberId;
 	}
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
+//	public void setMemberId(String memberId) {
+//		this.memberId = memberId;
+//	}
 
 	public CheckoutRecord getRecord() {
 		return record;
