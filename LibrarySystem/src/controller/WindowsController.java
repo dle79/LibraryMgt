@@ -27,13 +27,15 @@ import ui.PopupMessage;
 import ui.PrintCheckoutRecord;
 import ui.SearchBookOverdue;
 import business.Address;
+import business.Book;
 import business.LibraryMember;
 import exception.LibrarySystemException;
 import exception.LoginException;
 
 public class WindowsController implements Initializable {
 
-	private static final Logger log = Logger.getLogger(WindowsController.class.getName());
+	private static final Logger log = Logger.getLogger(WindowsController.class
+			.getName());
 
 	private SystemController sysController = null;
 
@@ -54,80 +56,87 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private MenuBar menuBar;
-	
-	// Attributes for add LibraryMember (look at AddNewMember.fxml) 
+
+	// Attributes for add LibraryMember (look at AddNewMember.fxml)
 	@FXML
 	private Button closeNewMemberBtn;
-	
-	@FXML 
+
+	@FXML
 	private Button saveNewMemberBtn;
-	
+
 	@FXML
 	private TextField memberIdTfd;
-	
+
 	@FXML
 	private TextField memberFirstNameTfd;
-	
+
 	@FXML
 	private TextField memberLastNameTfd;
-	
+
 	@FXML
 	private TextField memberPhoneTfd;
-	
+
 	@FXML
 	private TextField memberStreetTfd;
-	
+
 	@FXML
 	private TextField memberCityTfd;
-	
+
 	@FXML
 	private TextField memberStateTfd;
-	
+
 	@FXML
 	private TextField memberZipTfd;
-	
-	// Attributes for edit LibraryMember (look at EditLibraryMember.fxml) 
+
+	// Attributes for edit LibraryMember (look at EditLibraryMember.fxml)
 	@FXML
 	private Button editLibraryMemberSearchBtn;
-	
+
 	@FXML
 	private Button closeEditMemberBtn;
-	
-	@FXML 
+
+	@FXML
 	private Button saveEditMemberBtn;
-	
+
 	@FXML
 	private TextField editMemberIdTfd;
-	
+
 	@FXML
 	private TextField editMemberFirstNameTfd;
-	
+
 	@FXML
 	private TextField editMemberLastNameTfd;
-	
+
 	@FXML
 	private TextField editMemberPhoneTfd;
-	
+
 	@FXML
 	private TextField editMemberStreetTfd;
-	
+
 	@FXML
 	private TextField editMemberCityTfd;
-	
+
 	@FXML
 	private TextField editMemberStateTfd;
-	
+
 	@FXML
 	private TextField editMemberZipTfd;
-	
-	
-	private void commonCloseButtonHandler(Button closeButton)
-	{
+
+	// Attributes for add new book copy (look at AddNewBookCopy.fxml)
+	@FXML
+	private Button saveNewBookCopyBtn;
+	@FXML
+	private Button closeNewBookCopyBtn;
+	@FXML
+	private TextField isbn;
+
+	private void commonCloseButtonHandler(Button closeButton) {
 		// get a handle to the stage
-	    Stage stage = (Stage) closeButton.getScene().getWindow();
-	    // do what you have to do
-	    stage.close();
+		Stage stage = (Stage) closeButton.getScene().getWindow();
+		// do what you have to do
+		stage.close();
 	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -195,13 +204,14 @@ public class WindowsController implements Initializable {
 			actionOnReset();
 		}
 	}
+
 	private void actionOnReset() {
 		usernameTfd.setText("");
 		passwordTfd.setText("");
 		promptLabel.setText("");
 		loginBtn.setEffect(null);
 	}
-	
+
 	/**
 	 * Handle action related to Add Menu item.
 	 * 
@@ -214,15 +224,17 @@ public class WindowsController implements Initializable {
 	}
 
 	/**
-	 * Perform functionality associated with "Add New Library Member" menu selection or CTRL-A.
+	 * Perform functionality associated with "Add New Library Member" menu
+	 * selection or CTRL-A.
 	 */
-	//Stage stageAddNewLibarayMember = null;
+	// Stage stageAddNewLibarayMember = null;
 	private void addNewLibraryFunctionality() {
-		
+
 		try {
-			Stage stageAddNewLibarayMember = (Stage) menuBar.getScene().getWindow();
+			Stage stageAddNewLibarayMember = (Stage) menuBar.getScene()
+					.getWindow();
 			new AddNewMember().start(stageAddNewLibarayMember);
-			
+
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
@@ -230,33 +242,26 @@ public class WindowsController implements Initializable {
 	}
 
 	@FXML
-	private void closeNewMemberBtnAction()
-	{
-	    commonCloseButtonHandler(closeNewMemberBtn);
+	private void closeNewMemberBtnAction() {
+		commonCloseButtonHandler(closeNewMemberBtn);
 	}
-	
+
 	@FXML
-	private void saveNewMemberBtnAction()
-	{
-		Address address = new Address(memberStreetTfd.getText(), 
-				memberCityTfd.getText(), 
-				memberStateTfd.getText(), 
+	private void saveNewMemberBtnAction() {
+		Address address = new Address(memberStreetTfd.getText(),
+				memberCityTfd.getText(), memberStateTfd.getText(),
 				memberZipTfd.getText());
-		try
-		{
-			SystemController.getInstance().addNewMember(memberIdTfd.getText(), 
-					memberFirstNameTfd.getText(),
-					memberLastNameTfd.getText(),
+		try {
+			SystemController.getInstance().addNewMember(memberIdTfd.getText(),
+					memberFirstNameTfd.getText(), memberLastNameTfd.getText(),
 					memberPhoneTfd.getText(), address);
 
 			new PopupMessage("Successful !");
-		}
-		catch(LibrarySystemException ex)
-		{
+		} catch (LibrarySystemException ex) {
 			ex.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Handle action related to Add Book to Menu item.
 	 * 
@@ -267,7 +272,7 @@ public class WindowsController implements Initializable {
 	private void handleAddBookAction(final ActionEvent event) {
 		addNewBookFunctionality();
 	}
-	
+
 	/**
 	 * Handle action related to Add Book Copy Menu item.
 	 * 
@@ -289,8 +294,7 @@ public class WindowsController implements Initializable {
 	private void handleAddCheckoutRecordAction(final ActionEvent event) {
 		addCheckoutRecordFunctionality();
 	}
-	
-	
+
 	/**
 	 * Handle action related to Print Check Out Record to Menu item.
 	 * 
@@ -301,7 +305,7 @@ public class WindowsController implements Initializable {
 	private void handlePrintCheckoutRecordAction(final ActionEvent event) {
 		printCheckoutRecordFunctionality();
 	}
-	
+
 	/**
 	 * Handle action related to Search Book Overdue to Menu item.
 	 * 
@@ -312,87 +316,120 @@ public class WindowsController implements Initializable {
 	private void handleSearchBookOverdueAction(final ActionEvent event) {
 		searchBookOverdueFunctionality();
 	}
-	
+
 	/**
-	 * Perform functionality associated with "Add New Book" menu selection or CTRL-A.
+	 * Perform functionality associated with "Add New Book" menu selection or
+	 * CTRL-A.
 	 */
 	private void addNewBookFunctionality() {
-		
+
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new AddNewBook().start(stage);
-			
+
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Perform functionality associated with "Add New Book Copy" menu selection or CTRL-A.
+	 * Perform functionality associated with "Add New Book Copy" menu selection
+	 * or CTRL-A.
 	 */
 	private void addNewBookCopyFunctionality() {
-		
+
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new AddNewBookCopy().start(stage);
-			
+
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
+	/*
+	 * Dung Le: handle saving a new book copy
+	 */
+
+	@FXML
+	private void saveNewBookCopyBtnAction() {
+		Book b = SystemController.getInstance().searchBook(
+				isbn.getText().trim());
+		if (b == null) {
+			new PopupMessage("This book does not exist in our library!");
+		} else {
+			try {
+				SystemController.getInstance().addBookCopy(
+						isbn.getText().trim());
+
+				new PopupMessage("Successful !");
+			} catch (LibrarySystemException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+
+	/*
+	 * Dung Le: handle close form of saving a new book copy
+	 */
+
+	@FXML
+	private void closeNewBookCopyBtnAction() {
+		commonCloseButtonHandler(closeNewBookCopyBtn);
+	}
+
 	/**
-	 * Perform functionality associated with "Add Checkout record" menu selection or CTRL-A.
+	 * Perform functionality associated with "Add Checkout record" menu
+	 * selection or CTRL-A.
 	 */
 	private void addCheckoutRecordFunctionality() {
-		
+
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new AddCheckoutRecord().start(stage);
-			
+
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Perform functionality associated with "Print Checkout Record" menu selection or CTRL-A.
+	 * Perform functionality associated with "Print Checkout Record" menu
+	 * selection or CTRL-A.
 	 */
 	private void printCheckoutRecordFunctionality() {
-		
+
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new PrintCheckoutRecord().start(stage);
-			
+
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Perform functionality associated with "Search Book Overdue" menu selection or CTRL-A.
+	 * Perform functionality associated with "Search Book Overdue" menu
+	 * selection or CTRL-A.
 	 */
 	private void searchBookOverdueFunctionality() {
-		
+
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new SearchBookOverdue().start(stage);
-			
+
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	// For Edit Library Member
-	private void disableEditLibraryPartial(boolean isDisable)
-	{	
+	private void disableEditLibraryPartial(boolean isDisable) {
 		saveEditMemberBtn.setDisable(isDisable);
 		editMemberIdTfd.setDisable(isDisable);
 		editMemberFirstNameTfd.setDisable(isDisable);
@@ -403,7 +440,7 @@ public class WindowsController implements Initializable {
 		editMemberStateTfd.setDisable(isDisable);
 		editMemberZipTfd.setDisable(isDisable);
 	}
-	
+
 	/**
 	 * Handle action related to Edit Library Member to Menu item.
 	 * 
@@ -414,78 +451,74 @@ public class WindowsController implements Initializable {
 	private void handleEditLibraryMemberAction(final ActionEvent event) {
 		editLibraryMemberFunctionality();
 	}
-	
+
 	@FXML
-	private void closeEditMemberBtnAction()
-	{
+	private void closeEditMemberBtnAction() {
 		commonCloseButtonHandler(closeEditMemberBtn);
 	}
+
 	/**
-	 * Perform functionality associated with "Edit Library Member" menu selection.
+	 * Perform functionality associated with "Edit Library Member" menu
+	 * selection.
 	 */
 	private void editLibraryMemberFunctionality() {
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new EditLibraryMember().start(stage);
-			
+
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
-		}		
+		}
 	}
-	
+
 	@FXML
-	private void editLibraryMemberSearchBtnAction()
-	{
+	private void editLibraryMemberSearchBtnAction() {
 		LibraryMember libraryMember = isMemberExisted(editMemberIdTfd.getText());
-		
-		if(libraryMember != null )
-		{
+
+		if (libraryMember != null) {
 			editMemberFirstNameTfd.setText(libraryMember.getFirstName());
 			editMemberLastNameTfd.setText(libraryMember.getLastName());
-			editMemberPhoneTfd.setText(libraryMember.getTelephone());;
-			editMemberStreetTfd.setText(libraryMember.getAddress().getStreet());;
+			editMemberPhoneTfd.setText(libraryMember.getTelephone());
+			;
+			editMemberStreetTfd.setText(libraryMember.getAddress().getStreet());
+			;
 			editMemberCityTfd.setText(libraryMember.getAddress().getCity());
-			editMemberStateTfd.setText(libraryMember.getAddress().getState());;
+			editMemberStateTfd.setText(libraryMember.getAddress().getState());
+			;
 			editMemberZipTfd.setText(libraryMember.getAddress().getZip());
 			disableEditLibraryPartial(false);
-		}
-		else
-		{
+		} else {
 			new PopupMessage("Invalid Member");
 		}
 	}
-	
-	@FXML
-	private void saveEditMemberBtnAction()
-	{
-		Address address = new Address(editMemberStreetTfd.getText(), 
-				editMemberCityTfd.getText(), 
-				editMemberStateTfd.getText(), 
-				editMemberZipTfd.getText());
-		
-		LibraryMember libraryMember = new LibraryMember(editMemberIdTfd.getText(),
-				editMemberFirstNameTfd.getText(), 
-				editMemberLastNameTfd.getText(),
-				editMemberPhoneTfd.getText(), address);
 
-		try
-		{
+	@FXML
+	private void saveEditMemberBtnAction() {
+		Address address = new Address(editMemberStreetTfd.getText(),
+				editMemberCityTfd.getText(), editMemberStateTfd.getText(),
+				editMemberZipTfd.getText());
+
+		LibraryMember libraryMember = new LibraryMember(
+				editMemberIdTfd.getText(), editMemberFirstNameTfd.getText(),
+				editMemberLastNameTfd.getText(), editMemberPhoneTfd.getText(),
+				address);
+
+		try {
 			SystemController.getInstance().updateMemberInfo(libraryMember);
-			Stage stage = (Stage) editLibraryMemberSearchBtn.getScene().getWindow();
+			Stage stage = (Stage) editLibraryMemberSearchBtn.getScene()
+					.getWindow();
 			new PopupMessage("Successful !");
 			stage.close();
-		}
-		catch(LibrarySystemException ex)
-		{
+		} catch (LibrarySystemException ex) {
 			ex.printStackTrace();
 		}
 	}
-	private LibraryMember isMemberExisted(String memberId)
-	{
+
+	private LibraryMember isMemberExisted(String memberId) {
 		LibraryMember libraryMember = null;
 		libraryMember = SystemController.getInstance().searchMember(memberId);
-		
+
 		return libraryMember;
 	}
 }

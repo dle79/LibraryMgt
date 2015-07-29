@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="485.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="485.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
 
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="92.0" />
@@ -32,23 +32,16 @@
   </rowConstraints>
    <children>
       <Label prefHeight="24.0" prefWidth="92.0" text="ISBN" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="88.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-      <Label text="Copy number" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="isbn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="88.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
       <Text id="welcome-text" text="Add New Book Copy" textAlignment="CENTER" wrappingWidth="485.5625" GridPane.columnSpan="5" />
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <Button fx:id="saveNewBookCopyBtn" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveNewBookCopyBtnAction" prefWidth="100.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="7">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin></Button>
-      <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Close" GridPane.columnIndex="2" GridPane.rowIndex="7">
+      <Button fx:id="closeNewBookCopyBtn" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeNewBookCopyBtnAction" prefWidth="100.0" text="Close" GridPane.columnIndex="2" GridPane.rowIndex="7">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin></Button>
-      <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="Check" GridPane.columnIndex="3" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-      </Button>
    </children>
    <stylesheets>
       <URL value="@application.css" />
