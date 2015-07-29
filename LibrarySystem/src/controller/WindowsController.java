@@ -24,6 +24,7 @@ import ui.AddNewBook;
 import ui.AddNewBookCopy;
 import ui.AddNewMember;
 import ui.PrintCheckoutRecord;
+import ui.SearchBookOverdue;
 import business.Address;
 import exception.LibrarySystemException;
 import exception.LoginException;
@@ -316,14 +317,25 @@ public class WindowsController implements Initializable {
 	
 	
 	/**
-	 * Handle action related to Add Check Out Record to Menu item.
+	 * Handle action related to Print Check Out Record to Menu item.
 	 * 
 	 * @param event
-	 *            Event on "Add" Check Out Record to menu item.
+	 *            Event on "Print" Check Out Record to menu item.
 	 */
 	@FXML
 	private void handlePrintCheckoutRecordAction(final ActionEvent event) {
 		printCheckoutRecordFunctionality();
+	}
+	
+	/**
+	 * Handle action related to Search Book Overdue to Menu item.
+	 * 
+	 * @param event
+	 *            Event on "Search" Book Overdue to menu item.
+	 */
+	@FXML
+	private void handleSearchBookOverdueAction(final ActionEvent event) {
+		searchBookOverdueFunctionality();
 	}
 	
 	/**
@@ -372,7 +384,7 @@ public class WindowsController implements Initializable {
 	}
 	
 	/**
-	 * Perform functionality associated with "Add Checkout record" menu selection or CTRL-A.
+	 * Perform functionality associated with "Print Checkout Record" menu selection or CTRL-A.
 	 */
 	private void printCheckoutRecordFunctionality() {
 		
@@ -385,5 +397,22 @@ public class WindowsController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Perform functionality associated with "Search Book Overdue" menu selection or CTRL-A.
+	 */
+	private void searchBookOverdueFunctionality() {
+		
+		try {
+			Stage stage = (Stage) menuBar.getScene().getWindow();
+			new SearchBookOverdue().start(stage);
+			
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 }
