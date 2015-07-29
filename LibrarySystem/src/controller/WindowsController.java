@@ -5,11 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-import business.Address;
-import business.LibraryMember;
-import ui.AddNewMember;
-import exception.LibrarySystemException;
-import exception.LoginException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,6 +19,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import ui.AddCheckoutRecord;
+import ui.AddNewBook;
+import ui.AddNewBookCopy;
+import ui.AddNewMember;
+import business.Address;
+import exception.LibrarySystemException;
+import exception.LoginException;
 
 public class WindowsController implements Initializable {
 
@@ -277,4 +279,84 @@ public class WindowsController implements Initializable {
 		editMemberStateTfd.setDisable(isDisable);
 		editMemberZipTfd.setDisable(isDisable);
 	}
+	
+	/**
+	 * Handle action related to Add Book to Menu item.
+	 * 
+	 * @param event
+	 *            Event on "Add" book menu item.
+	 */
+	@FXML
+	private void handleAddBookAction(final ActionEvent event) {
+		addNewBookFunctionality();
+	}
+	
+	/**
+	 * Handle action related to Add Book Copy Menu item.
+	 * 
+	 * @param event
+	 *            Event on "Add" Book Copy menu item.
+	 */
+	@FXML
+	private void handleAddBookCopyAction(final ActionEvent event) {
+		addNewBookCopyFunctionality();
+	}
+
+	/**
+	 * Handle action related to Add Check Out Record to Menu item.
+	 * 
+	 * @param event
+	 *            Event on "Add" Check Out Record to menu item.
+	 */
+	@FXML
+	private void handleAddCheckoutRecordAction(final ActionEvent event) {
+		addCheckoutRecordFunctionality();
+	}
+	
+	
+	/**
+	 * Perform functionality associated with "Add New Book" menu selection or CTRL-A.
+	 */
+	private void addNewBookFunctionality() {
+		
+		try {
+			Stage stage = (Stage) menuBar.getScene().getWindow();
+			new AddNewBook().start(stage);
+			
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Perform functionality associated with "Add New Book Copy" menu selection or CTRL-A.
+	 */
+	private void addNewBookCopyFunctionality() {
+		
+		try {
+			Stage stage = (Stage) menuBar.getScene().getWindow();
+			new AddNewBookCopy().start(stage);
+			
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Perform functionality associated with "Add Checkout record" menu selection or CTRL-A.
+	 */
+	private void addCheckoutRecordFunctionality() {
+		
+		try {
+			Stage stage = (Stage) menuBar.getScene().getWindow();
+			new AddCheckoutRecord().start(stage);
+			
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
 }
