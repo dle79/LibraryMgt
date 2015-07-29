@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -24,6 +26,7 @@ import ui.AddNewBook;
 import ui.AddNewBookCopy;
 import ui.AddNewMember;
 import ui.EditLibraryMember;
+import ui.PopupMessage;
 import ui.PrintCheckoutRecord;
 import ui.SearchBookOverdue;
 import business.Address;
@@ -86,6 +89,9 @@ public class WindowsController implements Initializable {
 	private TextField memberZipTfd;
 	
 	// Attributes for edit LibraryMember (look at EditLibraryMember.fxml) 
+	@FXML
+	private Button editLibraryMemberSearchBtn;
+	
 	@FXML
 	private Button closeEditMemberBtn;
 	
@@ -433,6 +439,19 @@ public class WindowsController implements Initializable {
 	@FXML
 	private void editLibraryMemberSearchBtnAction()
 	{
-		disableEditLibraryPartial(false);
+		if(isMemberExisted(editMemberIdTfd.getText()) )
+		{
+			disableEditLibraryPartial(false);
+		}
+		else
+		{
+			Stage stage = (Stage) editLibraryMemberSearchBtn.getScene().getWindow();
+			new PopupMessage("Invalid Member", stage);
+		}
+	}
+	
+	private boolean isMemberExisted(String memberId)
+	{
+		return false;
 	}
 }
