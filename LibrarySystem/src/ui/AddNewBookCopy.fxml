@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="485.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="485.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="92.0" />
@@ -25,15 +25,10 @@
     <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="0.0" minHeight="30.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="285.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="285.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="129.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label prefHeight="24.0" prefWidth="92.0" text="ISBN" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -41,17 +36,11 @@
       <Label text="Copy number" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Text id="welcome-text" text="Add New Book Copy" textAlignment="CENTER" wrappingWidth="485.5625" GridPane.columnSpan="5" />
       <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="6" />
-      <Label text="Title" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Label text="Authors" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-      <Label text="Max. checkout length" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-      <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="12">
+      <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="7">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin></Button>
-      <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Close" GridPane.columnIndex="2" GridPane.rowIndex="12">
+      <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Close" GridPane.columnIndex="2" GridPane.rowIndex="7">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin></Button>
@@ -60,7 +49,6 @@
             <Insets />
          </GridPane.margin>
       </Button>
-      <Label text="days." GridPane.columnIndex="4" GridPane.rowIndex="8" />
    </children>
    <stylesheets>
       <URL value="@application.css" />

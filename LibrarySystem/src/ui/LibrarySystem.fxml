@@ -15,14 +15,17 @@
         <Menu mnemonicParsing="false" text="Add">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#handleAddLibraryMemberAction" text="Library Member" />
-                  <MenuItem mnemonicParsing="false" text="Original Book" />
-                  <MenuItem mnemonicParsing="false" text="Book Copy" />
+            <!-- <MenuItem mnemonicParsing="false" text="Librarian" /> -->
+                  <MenuItem mnemonicParsing="false" onAction="#handleAddBookAction" text="Original Book" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAddBookCopyAction" text="Book Copy" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAddCheckoutRecordAction" text="Checkout" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" text="Checkout Record" />
-            <MenuItem mnemonicParsing="false" text="Librarian" />
+            <!-- <MenuItem mnemonicParsing="false" text="Checkout Record" /> -->
+            <MenuItem mnemonicParsing="false" text="Library Member" />
+            <!--<MenuItem mnemonicParsing="false" text="Librarian" />-->
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Search">
