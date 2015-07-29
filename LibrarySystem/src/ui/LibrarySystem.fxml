@@ -27,8 +27,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Search">
           <items>
-            <MenuItem mnemonicParsing="false" text="Checkout Record of Library Member" />
-                  <MenuItem mnemonicParsing="false" text="Book" />
+            <MenuItem mnemonicParsing="false" onAction="#handleSearchBookOverdueAction" text="Book Overdue" />                  
           </items>
         </Menu>
             <Menu mnemonicParsing="false" text="Print">
@@ -36,7 +35,7 @@
                 <MenuItem mnemonicParsing="false" onAction="#handlePrintCheckoutRecordAction" text="Checkout Record" />
               </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Help">
+            <Menu mnemonicParsing="false" text="Contact">
               <items>
                 <MenuItem mnemonicParsing="false" text="Action 1" />
               </items>
