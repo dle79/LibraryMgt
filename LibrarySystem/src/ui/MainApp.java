@@ -1,11 +1,19 @@
 package ui;
 
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -31,8 +39,20 @@ public class MainApp extends Application {
 		
 		try {
 			VBox root = (VBox)FXMLLoader.load(getClass().getResource("LibrarySystem.fxml"));
+			File file = new File(System.getProperty("user.dir") + "/src/ui/library-pic.jpg");
+
+			Image image = new Image(file.toURI().toURL().toExternalForm());
+			// new BackgroundSize(width, height, widthAsPercentage, heightAsPercentage, contain, cover)
+			BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
+			// new BackgroundImage(image, repeatX, repeatY, position, size)
+			BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+			// new Background(images...)
+			Background background = new Background(backgroundImage);			
+			root.setBackground(background);
+
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			
+//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			primaryStage.setResizable(false);
