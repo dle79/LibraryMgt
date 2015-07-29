@@ -10,7 +10,7 @@
 
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
   <children>
-    <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput" VBox.vgrow="NEVER">
+    <MenuBar fx:id="menuBar"  VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="Add">
           <items>
