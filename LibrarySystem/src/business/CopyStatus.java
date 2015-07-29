@@ -4,7 +4,7 @@ public class CopyStatus {
 	public static final String NOT_AVAILABLE = "Not Available";
 	public static final String AVAILABLE = "Available";
 	public static final String OVER_DUE = "Overdue";
-//	private static final String DUE_BACK = "";
+
 	private String memberName;
 	private String isbn;
 	private String title;
@@ -27,10 +27,6 @@ public class CopyStatus {
 	public String getIsbn() {
 		return isbn;
 	}
-
-//	public void setIsbn(String isbn) {
-//		this.isbn = isbn;
-//	}
 
 	public String getTitle() {
 		return title;
