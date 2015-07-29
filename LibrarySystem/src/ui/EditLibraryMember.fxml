@@ -55,7 +55,7 @@
       <Label text="State" GridPane.columnIndex="1" GridPane.rowIndex="12" />
       <Label text="Zip Code" GridPane.columnIndex="1" GridPane.rowIndex="14" />
       <TextField fx:id="editMemberZipTfd" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="2" GridPane.rowIndex="14" />
-      <Button fx:id="saveEditMemberBtn" disable="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveNewMemberBtnAction" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+      <Button fx:id="saveEditMemberBtn" disable="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveEditMemberBtnAction" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="17" />
       <Button fx:id="closeEditMemberBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#closeEditMemberBtnAction" text="Close" GridPane.columnIndex="3" GridPane.rowIndex="17" />
       <Label text="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <TextField fx:id="editMemberLastNameTfd" disable="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />

@@ -8,15 +8,12 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +27,7 @@ import ui.PopupMessage;
 import ui.PrintCheckoutRecord;
 import ui.SearchBookOverdue;
 import business.Address;
+import business.LibraryMember;
 import exception.LibrarySystemException;
 import exception.LoginException;
 
@@ -250,8 +248,8 @@ public class WindowsController implements Initializable {
 					memberFirstNameTfd.getText(),
 					memberLastNameTfd.getText(),
 					memberPhoneTfd.getText(), address);
-			
-			commonCloseButtonHandler(saveNewMemberBtn);
+
+			new PopupMessage("Successful !");
 		}
 		catch(LibrarySystemException ex)
 		{
@@ -439,19 +437,55 @@ public class WindowsController implements Initializable {
 	@FXML
 	private void editLibraryMemberSearchBtnAction()
 	{
-		if(isMemberExisted(editMemberIdTfd.getText()) )
+		LibraryMember libraryMember = isMemberExisted(editMemberIdTfd.getText());
+		
+		if(libraryMember != null )
 		{
+			editMemberFirstNameTfd.setText(libraryMember.getFirstName());
+			editMemberLastNameTfd.setText(libraryMember.getLastName());
+			editMemberPhoneTfd.setText(libraryMember.getTelephone());;
+			editMemberStreetTfd.setText(libraryMember.getAddress().getStreet());;
+			editMemberCityTfd.setText(libraryMember.getAddress().getCity());
+			editMemberStateTfd.setText(libraryMember.getAddress().getState());;
+			editMemberZipTfd.setText(libraryMember.getAddress().getZip());
 			disableEditLibraryPartial(false);
 		}
 		else
 		{
-			Stage stage = (Stage) editLibraryMemberSearchBtn.getScene().getWindow();
-			new PopupMessage("Invalid Member", stage);
+			new PopupMessage("Invalid Member");
 		}
 	}
 	
-	private boolean isMemberExisted(String memberId)
+	@FXML
+	private void saveEditMemberBtnAction()
 	{
-		return false;
+		Address address = new Address(editMemberStreetTfd.getText(), 
+				editMemberCityTfd.getText(), 
+				editMemberStateTfd.getText(), 
+				editMemberZipTfd.getText());
+		
+		LibraryMember libraryMember = new LibraryMember(editMemberIdTfd.getText(),
+				editMemberFirstNameTfd.getText(), 
+				editMemberLastNameTfd.getText(),
+				editMemberPhoneTfd.getText(), address);
+
+		try
+		{
+			SystemController.getInstance().updateMemberInfo(libraryMember);
+			Stage stage = (Stage) editLibraryMemberSearchBtn.getScene().getWindow();
+			new PopupMessage("Successful !");
+			stage.close();
+		}
+		catch(LibrarySystemException ex)
+		{
+			ex.printStackTrace();
+		}
+	}
+	private LibraryMember isMemberExisted(String memberId)
+	{
+		LibraryMember libraryMember = null;
+		libraryMember = SystemController.getInstance().searchMember(memberId);
+		
+		return libraryMember;
 	}
 }

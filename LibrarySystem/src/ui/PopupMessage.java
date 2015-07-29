@@ -1,11 +1,10 @@
 package ui;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 
 public class PopupMessage {
 	
-	public PopupMessage(String message, Stage primaryStage)
+	public PopupMessage(String message)
 	{
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
