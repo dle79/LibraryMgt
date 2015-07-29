@@ -23,6 +23,7 @@ import ui.AddCheckoutRecord;
 import ui.AddNewBook;
 import ui.AddNewBookCopy;
 import ui.AddNewMember;
+import ui.PrintCheckoutRecord;
 import business.Address;
 import exception.LibrarySystemException;
 import exception.LoginException;
@@ -298,6 +299,17 @@ public class WindowsController implements Initializable {
 	
 	
 	/**
+	 * Handle action related to Add Check Out Record to Menu item.
+	 * 
+	 * @param event
+	 *            Event on "Add" Check Out Record to menu item.
+	 */
+	@FXML
+	private void handlePrintCheckoutRecordAction(final ActionEvent event) {
+		printCheckoutRecordFunctionality();
+	}
+	
+	/**
 	 * Perform functionality associated with "Add New Book" menu selection or CTRL-A.
 	 */
 	private void addNewBookFunctionality() {
@@ -335,6 +347,21 @@ public class WindowsController implements Initializable {
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new AddCheckoutRecord().start(stage);
+			
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Perform functionality associated with "Add Checkout record" menu selection or CTRL-A.
+	 */
+	private void printCheckoutRecordFunctionality() {
+		
+		try {
+			Stage stage = (Stage) menuBar.getScene().getWindow();
+			new PrintCheckoutRecord().start(stage);
 			
 		} catch (Exception e) {
 			log.info(e.getMessage());
