@@ -10,12 +10,11 @@
 
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
   <children>
-    <MenuBar fx:id="menuBar"  VBox.vgrow="NEVER">
+    <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="Add">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#handleAddLibraryMemberAction" text="Library Member" />
-            <!-- <MenuItem mnemonicParsing="false" text="Librarian" /> -->
                   <MenuItem mnemonicParsing="false" onAction="#handleAddBookAction" text="Original Book" />
                   <MenuItem mnemonicParsing="false" onAction="#handleAddBookCopyAction" text="Book Copy" />
                   <MenuItem mnemonicParsing="false" onAction="#handleAddCheckoutRecordAction" text="Checkout" />
@@ -23,9 +22,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <!-- <MenuItem mnemonicParsing="false" text="Checkout Record" /> -->
-            <MenuItem mnemonicParsing="false" text="Library Member" />
-            <!--<MenuItem mnemonicParsing="false" text="Librarian" />-->
+            <MenuItem mnemonicParsing="false" onAction="#handleEditLibraryMemberAction" text="Library Member" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Search">

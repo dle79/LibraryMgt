@@ -23,6 +23,7 @@ import ui.AddCheckoutRecord;
 import ui.AddNewBook;
 import ui.AddNewBookCopy;
 import ui.AddNewMember;
+import ui.EditLibraryMember;
 import ui.PrintCheckoutRecord;
 import business.Address;
 import exception.LibrarySystemException;
@@ -113,6 +114,7 @@ public class WindowsController implements Initializable {
 	
 	@FXML
 	private TextField editMemberZipTfd;
+	
 	
 	private void commonCloseButtonHandler(Button closeButton)
 	{
@@ -250,20 +252,6 @@ public class WindowsController implements Initializable {
 		}
 	}
 	
-	// For Edit Library Member
-	private void disableEditLibraryPartial(boolean isDisable)
-	{	
-		saveEditMemberBtn.setDisable(isDisable);
-		editMemberIdTfd.setDisable(isDisable);
-		editMemberFirstNameTfd.setDisable(isDisable);
-		editMemberLastNameTfd.setDisable(isDisable);
-		editMemberPhoneTfd.setDisable(isDisable);
-		editMemberStreetTfd.setDisable(isDisable);
-		editMemberCityTfd.setDisable(isDisable);
-		editMemberStateTfd.setDisable(isDisable);
-		editMemberZipTfd.setDisable(isDisable);
-	}
-	
 	/**
 	 * Handle action related to Add Book to Menu item.
 	 * 
@@ -369,6 +357,20 @@ public class WindowsController implements Initializable {
 		}
 	}
 
+	// For Edit Library Member
+	private void disableEditLibraryPartial(boolean isDisable)
+	{	
+		saveEditMemberBtn.setDisable(isDisable);
+		editMemberIdTfd.setDisable(isDisable);
+		editMemberFirstNameTfd.setDisable(isDisable);
+		editMemberLastNameTfd.setDisable(isDisable);
+		editMemberPhoneTfd.setDisable(isDisable);
+		editMemberStreetTfd.setDisable(isDisable);
+		editMemberCityTfd.setDisable(isDisable);
+		editMemberStateTfd.setDisable(isDisable);
+		editMemberZipTfd.setDisable(isDisable);
+	}
+	
 	/**
 	 * Handle action related to Edit Library Member to Menu item.
 	 * 
@@ -380,10 +382,28 @@ public class WindowsController implements Initializable {
 		editLibraryMemberFunctionality();
 	}
 	
+	@FXML
+	private void closeEditMemberBtnAction()
+	{
+		commonCloseButtonHandler(closeEditMemberBtn);
+	}
 	/**
 	 * Perform functionality associated with "Edit Library Member" menu selection.
 	 */
 	private void editLibraryMemberFunctionality() {
-		
+		try {
+			Stage stage = (Stage) menuBar.getScene().getWindow();
+			new EditLibraryMember().start(stage);
+			
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			e.printStackTrace();
+		}		
+	}
+	
+	@FXML
+	private void editLibraryMemberSearchBtnAction()
+	{
+		disableEditLibraryPartial(false);
 	}
 }
