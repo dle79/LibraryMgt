@@ -39,7 +39,7 @@
                   <TableColumn fx:id="isbnBOCol" prefWidth="170.0" text="ISBN" />
                   <TableColumn fx:id="titleBOCol" prefWidth="170.0" text="Book Title" />
                 <TableColumn fx:id="copyNumBOCol" prefWidth="170.0" text="Copy number" />
-                  <TableColumn fx:id="memIDBOCol" prefWidth="240.0" text="Member ID" />
+                  <TableColumn fx:id="memberIDBOCol" prefWidth="240.0" text="Member ID" />
                   <TableColumn fx:id="dueDateBOCol" prefWidth="245.0" text="Due date" />
               </columns>
             </TableView>

@@ -186,8 +186,8 @@ public class WindowsController implements Initializable {
 	private TableColumn<BookOverdueRecord, String> titleBOCol;
 	@FXML
 	private TableColumn<BookOverdueRecord, String> memberIDBOCol;
-	@FXML
-	private TableColumn<BookOverdueRecord, String> checkoutDateBOCol;
+	//@FXML
+	//private TableColumn<BookOverdueRecord, String> checkoutDateBOCol;
 	@FXML
 	private TableColumn<BookOverdueRecord, String> dueDateBOCol;
 
@@ -221,9 +221,9 @@ public class WindowsController implements Initializable {
 		}else if (s[s.length - 1].equals("BookOverdue.fxml")) {
 			isbnBOCol.setCellValueFactory(cellData -> cellData.getValue().isbnProperty());
 			titleBOCol.setCellValueFactory(cellData -> cellData.getValue().titlePropery());
-			memberIDBOCol.setCellValueFactory(cellData -> cellData.getValue().memberPropery());
-			checkoutDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
-					.checkoutDatePropery());
+			memberIDBOCol.setCellValueFactory(cellData -> cellData.getValue().memberIDPropery());
+			//checkoutDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
+			//		.checkoutDatePropery());
 			dueDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
 					.dueDatePropery());
 
