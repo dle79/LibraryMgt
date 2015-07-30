@@ -31,7 +31,6 @@ import ui.AddCheckoutRecord;
 import ui.AddNewBook;
 import ui.AddNewBookCopy;
 import ui.AddNewMember;
-import ui.CheckoutRecordEntryTable;
 import ui.EditLibraryMember;
 import ui.PopupMessage;
 import ui.PrintCheckoutRecord;
@@ -386,16 +385,16 @@ public class WindowsController implements Initializable {
 	private Button addCheckoutRecordBtn;
 
 	@FXML
-	private TableView<CheckoutRecordEntryTable> addCheckoutRecordTableView;
+	private TableView<CheckoutRecordTableEntry> addCheckoutRecordTableView;
 
 	@FXML
-	private TableColumn<CheckoutRecordEntryTable, Integer>  copyNumAddCheckoutRecordColumn;
+	private TableColumn<CheckoutRecordTableEntry, Integer>  copyNumAddCheckoutRecordColumn;
 
 	@FXML
-	private TableColumn<CheckoutRecordEntryTable, String>  dateAddCheckoutRecordColumn;
+	private TableColumn<CheckoutRecordTableEntry, String>  dateAddCheckoutRecordColumn;
 
 	@FXML
-	private TableColumn<CheckoutRecordEntryTable, String> dueDateAddCheckoutRecordColumn;
+	private TableColumn<CheckoutRecordTableEntry, String> dueDateAddCheckoutRecordColumn;
 
 	/**
 	 * Handle action related to Add Check Out Record to Menu item.
@@ -429,7 +428,7 @@ public class WindowsController implements Initializable {
 		String memberId = memberForCheckoutRecordTfd.getText();
 		String isbn = isbnCehckoutRecordTfd.getText();
 
-		ObservableList<CheckoutRecordEntryTable> data = FXCollections.observableArrayList();
+		ObservableList<CheckoutRecordTableEntry> data = FXCollections.observableArrayList();
 
 		try
 		{
@@ -439,17 +438,15 @@ public class WindowsController implements Initializable {
 			CheckoutRecord checkoutRecord = SystemController.getInstance().getCheckoutRecordByMemberId(memberId);
 			for(CheckoutRecordEntry entry : checkoutRecord.getEntries())
 			{
-				System.out.println("copy num:" + entry.getCopy().getCopyNum() + " checkout date:" + entry.getCheckoutDate() + "Due Date:" + entry.getDueDate());
-				data.add(new CheckoutRecordEntryTable(entry.getCopy().getCopyNum(),
-						entry.getCheckoutDate(), entry.getDueDate()));
+				data.add(new CheckoutRecordTableEntry(entry));
 			}
 
 			addCheckoutRecordTableView.getItems().clear();
 			addCheckoutRecordTableView.setItems(data);
 
-	        copyNumAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordEntryTable, Integer>("bookCopyNum"));
-	        dateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordEntryTable, String>("checkoutDate"));
-	        dueDateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordEntryTable, String>("dueDate"));
+	        copyNumAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, Integer>("copyNum"));
+	        dateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, String>("checkoutDate"));
+	        dueDateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, String>("dueDate"));
 		}
 		catch(LibrarySystemException ex)
 		{
