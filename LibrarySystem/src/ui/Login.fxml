@@ -8,59 +8,37 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="292.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
+<GridPane prefHeight="289.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="142.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="396.0" minWidth="10.0" prefWidth="23.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="147.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.0" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="37.0" minHeight="4.0" prefHeight="4.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="42.0" minHeight="0.0" prefHeight="13.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="63.0" minHeight="8.0" prefHeight="24.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="60.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <FlowPane alignment="CENTER">
-         <children>
-            <Label prefHeight="47.0" prefWidth="173.0" text="MUM Library System">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </FlowPane>
-      <HBox alignment="CENTER">
-         <children>
-            <Label prefHeight="14.0" prefWidth="78.0" text="Username" />
-            <TextField fx:id="usernameTfd" />
-         </children>
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="10.0" layoutY="57.0">
-         <children>
-            <Label prefHeight="14.0" prefWidth="78.0" text="Password" />
-            <PasswordField fx:id="passwordTfd" onKeyReleased="#handleLoginBtnOnKeyReleased" />
-         </children>
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="294.0">
-         <children>
-            <Label fx:id="promptLabel" prefHeight="14.0" prefWidth="141.0" textFill="#f20000">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Label>
-            <Button fx:id="loginBtn" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleloginBtn" text="Login">
-               <FlowPane.margin>
-                  <Insets top="20.0" />
-               </FlowPane.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button fx:id="resetBtn" mnemonicParsing="false" onKeyReleased="#handleResetBtnOnKeyReleased" onMouseClicked="#handleResetBtn" text="Reset">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
+      <Text id="welcome-text" text="MUM Library System" textAlignment="CENTER" wrappingWidth="533.2783203125" GridPane.columnSpan="2" />
+      <Label prefHeight="27.0" prefWidth="135.0" text="Username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="usernameTfd" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <Label prefHeight="27.0" prefWidth="131.0" text="Password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <PasswordField fx:id="passwordTfd" onKeyReleased="#handleLoginBtnOnKeyReleased" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <Button fx:id="loginBtn" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleloginBtn" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
-      </HBox>
+      </Button>
+      <Button fx:id="resetBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onKeyReleased="#handleResetBtnOnKeyReleased" onMouseClicked="#handleResetBtn" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+      <Label fx:id="promptLabel" prefHeight="27.0" prefWidth="278.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="8" />
    </children>
-</VBox>
+</GridPane>

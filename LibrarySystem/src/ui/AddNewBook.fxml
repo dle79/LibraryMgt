@@ -8,55 +8,55 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="428.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="634.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
 
   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="70.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="160.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="30.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="0.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="105.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="158.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="115.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="106.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="0.0" prefWidth="101.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints maxHeight="78.0" minHeight="50.0" prefHeight="70.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="78.0" minHeight="20.0" prefHeight="48.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="30.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="285.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="285.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="99.26759338378906" minHeight="50.0" prefHeight="99.26759338378906" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="78.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="85.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="89.0" minHeight="0.0" prefHeight="5.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="135.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="129.0" minHeight="0.0" prefHeight="5.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="279.2047882080078" minHeight="30.0" prefHeight="278.2380676269531" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="2.565948486328125" prefHeight="5.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="64.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="51.167694091796875" minHeight="0.0" prefHeight="5.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="91.53515625" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="131.40325927734375" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label prefHeight="24.0" prefWidth="92.0" text="ISBN" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+      <TextField fx:id="isbn" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <Label text="Title" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Text id="welcome-text" text="Add New Book" textAlignment="CENTER" wrappingWidth="430.5625" GridPane.columnSpan="5" />
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+      <Text id="welcome-text" text="Add New Book" textAlignment="CENTER" wrappingWidth="634.5625" GridPane.columnSpan="5" />
+      <TextField fx:id="title" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
       <Label text="Authors" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <Label prefHeight="30.0" prefWidth="149.0" text="Max. checkout length" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+      <TextField fx:id="maxcheckoutlength" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+      <TextField fx:id="numofcopies" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
       <Label text="Number of copies" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-      <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="100.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="13">
+      <Button fx:id="saveNewBookBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveNewBookBtnAction" prefHeight="40.0" prefWidth="100.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="11">
          <GridPane.margin>
-            <Insets left="30.0" />
+            <Insets left="100.0" />
          </GridPane.margin></Button>
-      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Close" GridPane.columnIndex="3" GridPane.rowIndex="13" />
-      <Label text="days." GridPane.columnIndex="4" GridPane.rowIndex="8">
+      <Button fx:id="closeNewBookBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeNewBookBtnAction" prefHeight="40.0" prefWidth="100.0" text="Close" GridPane.columnIndex="2" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets left="60.0" />
+         </GridPane.margin></Button>
+      <Label text="days." GridPane.columnIndex="3" GridPane.rowIndex="8">
          <GridPane.margin>
             <Insets left="40.0" />
          </GridPane.margin>
       </Label>
+      <ListView fx:id="authorListView" prefHeight="30.0" prefWidth="7.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+  
    </children>
    <stylesheets>
       <URL value="@application.css" />
