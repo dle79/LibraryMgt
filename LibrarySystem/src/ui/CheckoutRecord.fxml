@@ -38,7 +38,7 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="424.0" prefWidth="598.0">
          <children>
-            <TableView layoutX="6.0" prefHeight="419.0" prefWidth="782.0">
+            <TableView fx:id="addCheckoutRecordTableView" layoutX="6.0" prefHeight="419.0" prefWidth="782.0">
               <columns>
                 <TableColumn fx:id="copyNumAddCheckoutRecordColumn" prefWidth="170.0" text="Copy number" />
                   <TableColumn fx:id="dateAddCheckoutRecordColumn" prefWidth="240.0" text="Check out date" />
