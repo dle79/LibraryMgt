@@ -217,9 +217,9 @@ public class WindowsController implements Initializable {
 		}else if (s[s.length - 1].equals("BookOverdue.fxml")) {
 			isbnBOCol.setCellValueFactory(cellData -> cellData.getValue().isbnProperty());
 			titleBOCol.setCellValueFactory(cellData -> cellData.getValue().titlePropery());
-			memberIDBOCol.setCellValueFactory(cellData -> cellData.getValue().memberIDPropery());
-			//checkoutDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
-			//		.checkoutDatePropery());
+			copyNumBOCol.setCellValueFactory(cellData -> cellData.getValue()
+					.copyNumPropery());
+			memberIDBOCol.setCellValueFactory(cellData -> cellData.getValue().memberIDPropery());			
 			dueDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
 					.dueDatePropery());
 
@@ -628,7 +628,12 @@ public class WindowsController implements Initializable {
 				ObservableList<CheckoutRecordTableEntry> listData = FXCollections
 						.observableArrayList(entries);
 				boDuesView.setItems(listData);
-				new PopupMessage("Successful !");
+				
+				if(listData.isEmpty()){
+					new PopupMessage("This book has noThere are no book in overdue !");
+				}else{
+					new PopupMessage("Successful !");
+				}
 			} catch (LibrarySystemException ex) {
 				ex.printStackTrace();
 			}
