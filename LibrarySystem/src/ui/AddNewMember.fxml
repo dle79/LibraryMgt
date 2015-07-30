@@ -8,59 +8,59 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="428.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
+<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="428.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
 
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="80.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="111.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="127.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="25.0" minWidth="3.0" prefWidth="3.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="0.0" prefWidth="127.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="80.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints maxHeight="78.0" minHeight="50.0" prefHeight="70.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="78.0" minHeight="20.0" prefHeight="48.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="30.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="0.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="322.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="322.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="78.0" minHeight="50.0" prefHeight="71.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="78.0" minHeight="6.0" prefHeight="13.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="61.0" minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="15.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="40.0" minHeight="27.0" prefHeight="27.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="19.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="27.0" prefHeight="27.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="20.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="27.0" prefHeight="27.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="20.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="27.0" prefHeight="27.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="21.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="26.0" prefHeight="29.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="22.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="27.0" prefHeight="29.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="21.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="27.0" prefHeight="27.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="26.0" minHeight="13.0" prefHeight="26.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label prefHeight="24.0" prefWidth="92.0" text="Member ID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="memberIdTfd" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="131.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+      <TextField fx:id="memberIdTfd" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="126.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
       <Label text="First Name" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Text id="welcome-text" text="Add New Member" textAlignment="CENTER" wrappingWidth="430.5625" GridPane.columnSpan="5" />
-      <TextField fx:id="memberFirstNameTfd" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="131.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <TextField fx:id="memberStreetTfd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="8" />
-      <Label text="Street" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <Label text="City" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-      <TextField fx:id="memberCityTfd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="10" />
-      <TextField fx:id="memberStateTfd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="2" GridPane.rowIndex="12" />
-      <Label text="State" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <Label text="Zip Code" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-      <TextField fx:id="memberZipTfd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="2" GridPane.rowIndex="14" />
-      <Button fx:id="saveNewMemberBtn" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveNewMemberBtnAction" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="17" />
-      <Button fx:id="closeNewMemberBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#closeNewMemberBtnAction" text="Close" GridPane.columnIndex="3" GridPane.rowIndex="17" />
-      <Label text="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <TextField fx:id="memberLastNameTfd" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-      <Label text="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <TextField fx:id="memberPhoneTfd" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+      <TextField fx:id="memberFirstNameTfd" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="129.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <Label text="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <TextField fx:id="memberLastNameTfd" prefHeight="25.0" prefWidth="44.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+      <Label text="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <TextField fx:id="memberPhoneTfd" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+      <Label text="Street" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <TextField fx:id="memberStreetTfd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="10" />      
+      <Label text="City" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <TextField fx:id="memberCityTfd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+      <TextField fx:id="memberStateTfd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="3" GridPane.rowIndex="14" />
+      <Label text="State" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+      <Label text="Zip Code" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+      <TextField fx:id="memberZipTfd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="3" GridPane.rowIndex="16" />
+      <Button fx:id="saveNewMemberBtn" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveNewMemberBtnAction" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="18" />
+      <Button fx:id="closeNewMemberBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#closeNewMemberBtnAction" text="Close" GridPane.columnIndex="3" GridPane.rowIndex="18" />
+      
+      
    </children>
    <stylesheets>
       <URL value="@application.css" />
