@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.3154875717017208" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="621.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.3154875717017208" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="621.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
@@ -28,11 +28,11 @@
               </rowConstraints>
                <children>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Member number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextArea maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <Label text="ISBN" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextArea maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="142.0" text="Check out" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="142.0" text="Close" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Button fx:id="addCheckoutRecordBtn" mnemonicParsing="false" onAction="#addCheckoutRecordBtnAction" prefHeight="39.0" prefWidth="142.0" text="Check out" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Button fx:id="closeAddCheckoutRecordBtn" mnemonicParsing="false" onAction="#closeAddCheckoutRecordBtnAction" prefHeight="39.0" prefWidth="142.0" text="Close" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <TextField fx:id="memberForCheckoutRecordTfd" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="isbnCehckoutRecordTfd" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </children></AnchorPane>
@@ -40,9 +40,9 @@
          <children>
             <TableView layoutX="6.0" prefHeight="419.0" prefWidth="782.0">
               <columns>
-                <TableColumn prefWidth="170.0" text="Copy number" />
-                  <TableColumn prefWidth="240.0" text="Check out date" />
-                  <TableColumn prefWidth="245.0" text="Due date" />
+                <TableColumn fx:id="copyNumAddCheckoutRecordColumn" prefWidth="170.0" text="Copy number" />
+                  <TableColumn fx:id="dateAddCheckoutRecordColumn" prefWidth="240.0" text="Check out date" />
+                  <TableColumn fx:id="dueDateAddCheckoutRecordColumn" prefWidth="245.0" text="Due date" />
               </columns>
             </TableView>
          </children></AnchorPane>

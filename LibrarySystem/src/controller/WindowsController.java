@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
@@ -28,6 +29,8 @@ import ui.PrintCheckoutRecord;
 import ui.SearchBookOverdue;
 import business.Address;
 import business.Book;
+import business.CheckoutRecord;
+import business.CheckoutRecordEntry;
 import business.LibraryMember;
 import exception.LibrarySystemException;
 import exception.LoginException;
@@ -284,6 +287,26 @@ public class WindowsController implements Initializable {
 		addNewBookCopyFunctionality();
 	}
 
+	// Section for Add Checkout Record
+	
+	@FXML
+	private TextField memberForCheckoutRecordTfd;
+	
+	@FXML
+	private TextField isbnCehckoutRecordTfd;
+	
+	@FXML
+	private Button addCheckoutRecordBtn;
+	
+	@FXML
+	private TableColumn  copyNumAddCheckoutRecordColumn;
+	
+	@FXML
+	private TableColumn  dateAddCheckoutRecordColumn;
+	
+	@FXML
+	private TableColumn dueDateAddCheckoutRecordColumn;
+	
 	/**
 	 * Handle action related to Add Check Out Record to Menu item.
 	 * 
@@ -294,7 +317,58 @@ public class WindowsController implements Initializable {
 	private void handleAddCheckoutRecordAction(final ActionEvent event) {
 		addCheckoutRecordFunctionality();
 	}
+	
+	/**
+	 * Perform functionality associated with "Add Checkout record" menu
+	 * selection or CTRL-A.
+	 */
+	private void addCheckoutRecordFunctionality() {
 
+		try {
+			Stage stage = (Stage) menuBar.getScene().getWindow();
+			new AddCheckoutRecord().start(stage);
+
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	@FXML
+	private void addCheckoutRecordBtnAction()
+	{
+		String memberId = memberForCheckoutRecordTfd.getText();
+		String isbn = isbnCehckoutRecordTfd.getText();
+		try
+		{
+			SystemController.getInstance().checkoutBook(memberId, isbn);
+			new PopupMessage("Sccuessful!");
+			
+			CheckoutRecord checkoutRecord = SystemController.getInstance().getCheckoutRecordByMemberId(memberId);
+			for(CheckoutRecordEntry entry : checkoutRecord.getEntries())
+			{
+				System.out.println("copy num:" + entry.getCopy().getCopyNum() + " checkout date:" + entry.getCheckoutDate() + "Due Date:" + entry.getDueDate());
+				//copyNumAddCheckoutRecordColumn.setCellValueFactory(entry.getCopy().getCopyNum());
+			}
+		}
+		catch(LibrarySystemException ex)
+		{
+			new PopupMessage("Libarary Member or ISBN is invalid!");
+			log.info(ex.getMessage());
+			ex.printStackTrace();
+		}
+	}
+	
+	@FXML
+	private Button closeAddCheckoutRecordBtn;
+	
+	@FXML
+	private void closeAddCheckoutRecordBtnAction()
+	{
+		commonCloseButtonHandler(closeAddCheckoutRecordBtn);
+	}
+	
+
+	// Section for printing Check out record
 	/**
 	 * Handle action related to Print Check Out Record to Menu item.
 	 * 
@@ -380,21 +454,6 @@ public class WindowsController implements Initializable {
 		commonCloseButtonHandler(closeNewBookCopyBtn);
 	}
 
-	/**
-	 * Perform functionality associated with "Add Checkout record" menu
-	 * selection or CTRL-A.
-	 */
-	private void addCheckoutRecordFunctionality() {
-
-		try {
-			Stage stage = (Stage) menuBar.getScene().getWindow();
-			new AddCheckoutRecord().start(stage);
-
-		} catch (Exception e) {
-			log.info(e.getMessage());
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Perform functionality associated with "Print Checkout Record" menu
@@ -480,12 +539,9 @@ public class WindowsController implements Initializable {
 			editMemberFirstNameTfd.setText(libraryMember.getFirstName());
 			editMemberLastNameTfd.setText(libraryMember.getLastName());
 			editMemberPhoneTfd.setText(libraryMember.getTelephone());
-			;
 			editMemberStreetTfd.setText(libraryMember.getAddress().getStreet());
-			;
 			editMemberCityTfd.setText(libraryMember.getAddress().getCity());
 			editMemberStateTfd.setText(libraryMember.getAddress().getState());
-			;
 			editMemberZipTfd.setText(libraryMember.getAddress().getZip());
 			disableEditLibraryPartial(false);
 		} else {
