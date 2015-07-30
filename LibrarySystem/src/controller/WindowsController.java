@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,7 +15,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -301,13 +305,16 @@ public class WindowsController implements Initializable {
 	private Button addCheckoutRecordBtn;
 	
 	@FXML
-	private TableColumn  copyNumAddCheckoutRecordColumn;
+	private TableView<CheckoutRecordEntryTable> addCheckoutRecordTableView;
 	
 	@FXML
-	private TableColumn  dateAddCheckoutRecordColumn;
+	private TableColumn<CheckoutRecordEntryTable, Integer>  copyNumAddCheckoutRecordColumn;
 	
 	@FXML
-	private TableColumn dueDateAddCheckoutRecordColumn;
+	private TableColumn<CheckoutRecordEntryTable, String>  dateAddCheckoutRecordColumn;
+	
+	@FXML
+	private TableColumn<CheckoutRecordEntryTable, String> dueDateAddCheckoutRecordColumn;
 	
 	/**
 	 * Handle action related to Add Check Out Record to Menu item.
@@ -340,6 +347,9 @@ public class WindowsController implements Initializable {
 	{
 		String memberId = memberForCheckoutRecordTfd.getText();
 		String isbn = isbnCehckoutRecordTfd.getText();
+		
+		ObservableList<CheckoutRecordEntryTable> data = FXCollections.observableArrayList();
+        
 		try
 		{
 			SystemController.getInstance().checkoutBook(memberId, isbn);
@@ -349,8 +359,16 @@ public class WindowsController implements Initializable {
 			for(CheckoutRecordEntry entry : checkoutRecord.getEntries())
 			{
 				System.out.println("copy num:" + entry.getCopy().getCopyNum() + " checkout date:" + entry.getCheckoutDate() + "Due Date:" + entry.getDueDate());
-				//copyNumAddCheckoutRecordColumn.setCellValueFactory(entry.getCopy().getCopyNum());
+				data.add(new CheckoutRecordEntryTable(entry.getCopy().getCopyNum(), 
+						entry.getCheckoutDate(), entry.getDueDate()));
 			}
+			
+			addCheckoutRecordTableView.getItems().clear();
+			addCheckoutRecordTableView.setItems(data);
+
+	        copyNumAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordEntryTable, Integer>("bookCopyNum"));
+	        dateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordEntryTable, String>("checkoutDate"));
+	        dueDateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordEntryTable, String>("dueDate"));
 		}
 		catch(LibrarySystemException ex)
 		{
