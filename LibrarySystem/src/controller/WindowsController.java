@@ -261,6 +261,8 @@ public class WindowsController implements Initializable {
 
 			new PopupMessage("Successful !");
 		} catch (LibrarySystemException ex) {
+			new PopupMessage(ex.getMessage());
+			log.info(ex.getMessage());
 			ex.printStackTrace();
 		}
 	}
@@ -341,7 +343,7 @@ public class WindowsController implements Initializable {
 		try
 		{
 			SystemController.getInstance().checkoutBook(memberId, isbn);
-			new PopupMessage("Sccuessful!");
+			new PopupMessage("Successful!");
 			
 			CheckoutRecord checkoutRecord = SystemController.getInstance().getCheckoutRecordByMemberId(memberId);
 			for(CheckoutRecordEntry entry : checkoutRecord.getEntries())
@@ -352,7 +354,7 @@ public class WindowsController implements Initializable {
 		}
 		catch(LibrarySystemException ex)
 		{
-			new PopupMessage("Libarary Member or ISBN is invalid!");
+			new PopupMessage(ex.getMessage());
 			log.info(ex.getMessage());
 			ex.printStackTrace();
 		}
@@ -440,6 +442,8 @@ public class WindowsController implements Initializable {
 
 				new PopupMessage("Successful !");
 			} catch (LibrarySystemException ex) {
+				new PopupMessage(ex.getMessage());
+				log.info(ex.getMessage());
 				ex.printStackTrace();
 			}
 		}
@@ -567,6 +571,8 @@ public class WindowsController implements Initializable {
 			new PopupMessage("Successful !");
 			stage.close();
 		} catch (LibrarySystemException ex) {
+			new PopupMessage(ex.getMessage());
+			log.info(ex.getMessage());
 			ex.printStackTrace();
 		}
 	}
