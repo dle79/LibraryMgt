@@ -341,13 +341,25 @@ public class WindowsController implements Initializable {
 					memberPhoneTfd.getText(), address);
 
 			new PopupMessage("Successful !");
+			clearTextFieldMember();
 		} catch (LibrarySystemException ex) {
 			new PopupMessage(ex.getMessage());
 			log.info(ex.getMessage());
 			ex.printStackTrace();
 		}
 	}
-
+	private void clearTextFieldMember()
+	{
+		memberIdTfd.setText("");
+		memberCityTfd.setText("");
+		memberFirstNameTfd.setText("");
+		memberLastNameTfd.setText("");
+		memberPhoneTfd.setText("");
+		memberStreetTfd.setText("");
+		memberCityTfd.setText("");
+		memberStateTfd.setText("");
+		memberZipTfd.setText("");
+	}
 	/**
 	 * Handle action related to Add Book to Menu item.
 	 *
