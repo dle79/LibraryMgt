@@ -238,10 +238,10 @@ public class SystemController implements ControllerInterface {
 	 * @return
 	 * @throws LibrarySystemException
 	 */
-	public boolean addBook(String isbn, String title, String maxCheckoutLength, String numOfcopies, Author[] authors)
+	public boolean addBook(String isbn, String title, String maxCheckoutLength, String numOfcopies, List<Author> authors)
 			throws LibrarySystemException {
 		return addBook(isbn, title, Integer.parseInt(maxCheckoutLength), Integer.parseInt(numOfcopies),
-				Arrays.asList(authors));
+				authors);
 	}
 
 	/**
