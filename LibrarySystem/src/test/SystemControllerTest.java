@@ -123,7 +123,7 @@ public class SystemControllerTest {
 	}
 
 	@Test
-	public void testAddBookStringStringStringStringAuthorArray() {
+	public void testAddBook() {
 		List<Author> authors = new ArrayList<>();
 		authors.add(new Author("Zi", "Sun", "none", new Address("none", "none", "Middle Kingdom", "none"), "Died"));
 
