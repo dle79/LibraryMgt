@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -31,7 +30,6 @@ import ui.AddCheckoutRecord;
 import ui.AddNewBook;
 import ui.AddNewBookCopy;
 import ui.AddNewMember;
-import ui.CheckoutRecordEntryTable;
 import ui.EditLibraryMember;
 import ui.PopupMessage;
 import ui.PrintCheckoutRecord;
@@ -39,13 +37,11 @@ import ui.SearchBookOverdue;
 import business.Address;
 import business.Author;
 import business.Book;
-import business.BookOverdueRecord;
 import business.CheckoutRecord;
 import business.CheckoutRecordEntry;
-import business.LibraryMember;
 import business.CheckoutRecordTableEntry;
-import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
+import business.CopyStatus;
+import business.LibraryMember;
 import exception.LibrarySystemException;
 import exception.LoginException;
 
@@ -179,17 +175,17 @@ public class WindowsController implements Initializable {
 	private TableColumn<CheckoutRecordTableEntry, String> memberIDCol;
 	// Attributes for add new book (look at BookOverDue.fxml)
 	@FXML
-	TableView<BookOverdueRecord> bookoverduesView;
+	private TableView<CheckoutRecordTableEntry> boDuesView;
 	@FXML
-	private TableColumn<BookOverdueRecord, String> isbnBOCol;
+	private TableColumn<CheckoutRecordTableEntry, String> isbnBOCol;
 	@FXML
-	private TableColumn<BookOverdueRecord, String> titleBOCol;
+	private TableColumn<CheckoutRecordTableEntry, String> titleBOCol;
 	@FXML
-	private TableColumn<BookOverdueRecord, String> memberIDBOCol;
+	private TableColumn<CheckoutRecordTableEntry, String> memberIDBOCol;
 	@FXML
-	private TableColumn<BookOverdueRecord, String> checkoutDateBOCol;
+	private TableColumn<CheckoutRecordTableEntry, String> copyNumBOCol;
 	@FXML
-	private TableColumn<BookOverdueRecord, String> dueDateBOCol;
+	private TableColumn<CheckoutRecordTableEntry, String> dueDateBOCol;
 
 
 	@FXML
@@ -221,9 +217,9 @@ public class WindowsController implements Initializable {
 		}else if (s[s.length - 1].equals("BookOverdue.fxml")) {
 			isbnBOCol.setCellValueFactory(cellData -> cellData.getValue().isbnProperty());
 			titleBOCol.setCellValueFactory(cellData -> cellData.getValue().titlePropery());
-			memberIDBOCol.setCellValueFactory(cellData -> cellData.getValue().memberPropery());
-			checkoutDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
-					.checkoutDatePropery());
+			memberIDBOCol.setCellValueFactory(cellData -> cellData.getValue().memberIDPropery());
+			//checkoutDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
+			//		.checkoutDatePropery());
 			dueDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
 					.dueDatePropery());
 
@@ -386,16 +382,16 @@ public class WindowsController implements Initializable {
 	private Button addCheckoutRecordBtn;
 
 	@FXML
-	private TableView<CheckoutRecordEntryTable> addCheckoutRecordTableView;
+	private TableView<CheckoutRecordTableEntry> addCheckoutRecordTableView;
 
 	@FXML
-	private TableColumn<CheckoutRecordEntryTable, Integer>  copyNumAddCheckoutRecordColumn;
+	private TableColumn<CheckoutRecordTableEntry, Integer>  copyNumAddCheckoutRecordColumn;
 
 	@FXML
-	private TableColumn<CheckoutRecordEntryTable, String>  dateAddCheckoutRecordColumn;
+	private TableColumn<CheckoutRecordTableEntry, String>  dateAddCheckoutRecordColumn;
 
 	@FXML
-	private TableColumn<CheckoutRecordEntryTable, String> dueDateAddCheckoutRecordColumn;
+	private TableColumn<CheckoutRecordTableEntry, String> dueDateAddCheckoutRecordColumn;
 
 	/**
 	 * Handle action related to Add Check Out Record to Menu item.
@@ -429,7 +425,7 @@ public class WindowsController implements Initializable {
 		String memberId = memberForCheckoutRecordTfd.getText();
 		String isbn = isbnCehckoutRecordTfd.getText();
 
-		ObservableList<CheckoutRecordEntryTable> data = FXCollections.observableArrayList();
+		ObservableList<CheckoutRecordTableEntry> data = FXCollections.observableArrayList();
 
 		try
 		{
@@ -439,17 +435,15 @@ public class WindowsController implements Initializable {
 			CheckoutRecord checkoutRecord = SystemController.getInstance().getCheckoutRecordByMemberId(memberId);
 			for(CheckoutRecordEntry entry : checkoutRecord.getEntries())
 			{
-				System.out.println("copy num:" + entry.getCopy().getCopyNum() + " checkout date:" + entry.getCheckoutDate() + "Due Date:" + entry.getDueDate());
-				data.add(new CheckoutRecordEntryTable(entry.getCopy().getCopyNum(),
-						entry.getCheckoutDate(), entry.getDueDate()));
+				data.add(new CheckoutRecordTableEntry(entry));
 			}
 
 			addCheckoutRecordTableView.getItems().clear();
 			addCheckoutRecordTableView.setItems(data);
 
-	        copyNumAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordEntryTable, Integer>("bookCopyNum"));
-	        dateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordEntryTable, String>("checkoutDate"));
-	        dueDateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordEntryTable, String>("dueDate"));
+	        copyNumAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, Integer>("copyNum"));
+	        dateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, String>("checkoutDate"));
+	        dueDateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, String>("dueDate"));
 		}
 		catch(LibrarySystemException ex)
 		{
@@ -616,8 +610,8 @@ public class WindowsController implements Initializable {
 
 	/*
 	 * Dung Le: handle check book overdue
-	 */
-
+	 */	
+	
 	@FXML
 	private void checkBookOverDueBtnAction() {
 		Book b = SystemController.getInstance().searchBook(
@@ -626,9 +620,14 @@ public class WindowsController implements Initializable {
 			new PopupMessage("This book does not exist in our library!");
 		} else {
 			try {
-				SystemController.getInstance().addBookCopy(
-						isbn.getText().trim());
-
+				List<CopyStatus> copyStatuslist = SystemController.getInstance().getCopyStatusListByISBN(isbn.getText().trim());
+				List<CheckoutRecordTableEntry> entries = new ArrayList<CheckoutRecordTableEntry>();
+				for(CopyStatus cs : copyStatuslist){
+					entries.add(new CheckoutRecordTableEntry(cs.getIsbn(), cs.getTitle(), cs.getCopyNum(), cs.getMemberName(), cs.getDueBack()));
+				}
+				ObservableList<CheckoutRecordTableEntry> listData = FXCollections
+						.observableArrayList(entries);
+				boDuesView.setItems(listData);
 				new PopupMessage("Successful !");
 			} catch (LibrarySystemException ex) {
 				ex.printStackTrace();

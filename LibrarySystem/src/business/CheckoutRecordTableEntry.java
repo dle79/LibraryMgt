@@ -10,13 +10,24 @@ public class CheckoutRecordTableEntry {
 	private final SimpleStringProperty copyNum = new SimpleStringProperty("");
 	private final SimpleStringProperty checkoutDate = new SimpleStringProperty("");
 	private final SimpleStringProperty dueDate = new SimpleStringProperty("");
-
+	private final SimpleStringProperty memberID = new SimpleStringProperty("");
+	
+	// Constructor for Due Date
+	public CheckoutRecordTableEntry(String isbn, String title, String copyNum, String memberID, String dueDate) {
+		this.isbn.set(isbn);
+		this.memberID.set(memberID);
+		this.title.set(title);
+		this.dueDate.set(dueDate);
+		this.copyNum.set(copyNum);
+	}
+	
+	// Constructor for both CheckoutRecord and Search
 	public CheckoutRecordTableEntry(CheckoutRecordEntry entry) {
 		isbn.set(entry.getCopy().getBook().getIsbn());
 		title.set(entry.getCopy().getBook().getTitle());
 		copyNum.set(String.valueOf(entry.getCopy().getCopyNum()));
 		checkoutDate.set(entry.getCheckoutDate());
-		dueDate.set(entry.getCheckoutDate());
+		dueDate.set(entry.getDueDate());
 	}
 
 	public String getISBN() {
@@ -59,4 +70,7 @@ public class CheckoutRecordTableEntry {
 		return this.dueDate;
 	}
 
+	public StringProperty memberIDPropery() {
+		return this.memberID;
+	}
 }
