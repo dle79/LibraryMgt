@@ -38,7 +38,6 @@ import ui.SearchBookOverdue;
 import business.Address;
 import business.Author;
 import business.Book;
-import business.BookOverdueRecord;
 import business.CheckoutRecord;
 import business.CheckoutRecordEntry;
 import business.LibraryMember;
@@ -178,17 +177,17 @@ public class WindowsController implements Initializable {
 	private TableColumn<CheckoutRecordTableEntry, String> memberIDCol;
 	// Attributes for add new book (look at BookOverDue.fxml)
 	@FXML
-	TableView<BookOverdueRecord> bookoverduesView;
+	TableView<CheckoutRecordTableEntry> bookoverduesView;
 	@FXML
-	private TableColumn<BookOverdueRecord, String> isbnBOCol;
+	private TableColumn<CheckoutRecordTableEntry, String> isbnBOCol;
 	@FXML
-	private TableColumn<BookOverdueRecord, String> titleBOCol;
+	private TableColumn<CheckoutRecordTableEntry, String> titleBOCol;
 	@FXML
-	private TableColumn<BookOverdueRecord, String> memberIDBOCol;
+	private TableColumn<CheckoutRecordTableEntry, String> memberIDBOCol;
 	//@FXML
 	//private TableColumn<BookOverdueRecord, String> checkoutDateBOCol;
 	@FXML
-	private TableColumn<BookOverdueRecord, String> dueDateBOCol;
+	private TableColumn<CheckoutRecordTableEntry, String> dueDateBOCol;
 
 
 	@FXML
