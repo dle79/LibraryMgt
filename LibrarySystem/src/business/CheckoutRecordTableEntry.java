@@ -27,7 +27,7 @@ public class CheckoutRecordTableEntry {
 		title.set(entry.getCopy().getBook().getTitle());
 		copyNum.set(String.valueOf(entry.getCopy().getCopyNum()));
 		checkoutDate.set(entry.getCheckoutDate());
-		dueDate.set(entry.getCheckoutDate());
+		dueDate.set(entry.getDueDate());
 	}
 
 	public String getISBN() {
