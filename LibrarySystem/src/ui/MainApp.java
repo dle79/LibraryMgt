@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -51,7 +52,11 @@ public class MainApp extends Application {
 			root.setBackground(background);
 
 			Scene scene = new Scene(root);
-			
+			File fileIcon = new File(System.getProperty("user.dir") + "/src/ui/library_icon.jpg");
+
+			Image imageIcon = new Image(fileIcon.toURI().toURL().toExternalForm());
+
+			primaryStage.getIcons().add(imageIcon);
 //			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -68,6 +73,7 @@ public class MainApp extends Application {
 
 	public void showLoginForm()
 	{
+		/*
 		VBox root = null;
 		Scene scene = null;
 		try {
@@ -78,7 +84,7 @@ public class MainApp extends Application {
 			scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			dialogStage.setScene(scene);
-			
+			dialogStage.setTitle("Login");
 			dialogStage.setResizable(false);
 			dialogStage.setOnCloseRequest(new EventHandler(){
 
@@ -89,11 +95,42 @@ public class MainApp extends Application {
 				}
 				
 			});
+						
+			// Show the dialog and wait until the user closes it
+			dialogStage.showAndWait();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}*/
+		  Scene scene = null;
+		try {
+			
+			Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+			Stage dialogStage = new Stage();
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			dialogStage.setScene(scene);
+			dialogStage.setTitle("Login");
+			dialogStage.setResizable(false);
+			dialogStage.setOnCloseRequest(new EventHandler(){
+
+				@Override
+				public void handle(Event event) {
+					// TODO Auto-generated method stub
+					Platform.exit();
+				}
+				
+			});
+						
+			
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+
+
 	}
 	public static void main(String[] args) {
 		launch(args);
