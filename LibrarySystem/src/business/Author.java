@@ -19,9 +19,15 @@ final public class Author extends Person implements Serializable {
 
 	@Override
 	public String toString() {
+		return super.getLastName() + " " + super.getFirstName();
+	}
+	
+	/*public String toString() {
 		return "Author [bio=" + bio + ", FirstName=" + getFirstName() + ", LastName=" + getLastName()
 				+ ", Telephone=" + getTelephone() + ", Address=" + getAddress() + "]";
-	}
+	}*/
+	
+	
 
 
 }
