@@ -136,7 +136,55 @@ public class WindowsController implements Initializable {
 	private Button closeNewBookCopyBtn;
 	@FXML
 	private TextField isbn;
-
+	// Attributes for add new book (look at AddNewBook.fxml)
+	@FXML
+	private Button closeNewBookBtn;
+	@FXML
+	ListView<Author> authorListView;
+	@FXML
+	private TextField title;
+	@FXML
+	private TextField maxcheckoutlength;
+	@FXML
+	private TextField numofcopies;
+	@FXML
+	private Button closePrintCheckoutBtn;
+	// Attributes for add new book (look at PrintCheckoutRecord.fxml)
+	@FXML
+	private TextField memberID;
+	
+	@FXML
+	TableView<MemberCheckoutRecord> checkoutsView;
+	@FXML
+	private TableColumn<MemberCheckoutRecord, String> isbnCol;
+	@FXML
+	private TableColumn<MemberCheckoutRecord, String> titleCol;
+	@FXML
+	private TableColumn<MemberCheckoutRecord, String> copyNumCol;
+	@FXML
+	private TableColumn<MemberCheckoutRecord, String> checkoutDateCol;
+	@FXML
+	private TableColumn<MemberCheckoutRecord, String> dueDateCol;
+	@FXML
+	private TableColumn<MemberCheckoutRecord, String> memberIDCol;
+	// Attributes for add new book (look at BookOverDue.fxml)
+	@FXML
+	TableView<BookOverdueRecord> bookoverduesView;
+	@FXML
+	private TableColumn<BookOverdueRecord, String> isbnBOCol;
+	@FXML
+	private TableColumn<BookOverdueRecord, String> titleBOCol;
+	@FXML
+	private TableColumn<BookOverdueRecord, String> memberIDBOCol;
+	@FXML
+	private TableColumn<BookOverdueRecord, String> checkoutDateBOCol;
+	@FXML
+	private TableColumn<BookOverdueRecord, String> dueDateBOCol;
+	
+	
+	@FXML
+	private Button closeCheckBookOverDueBtn;
+	
 	private void commonCloseButtonHandler(Button closeButton) {
 		// get a handle to the stage
 		Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -146,7 +194,30 @@ public class WindowsController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		String path = arg0.getPath();
+		String[] s = path.split("/");
 
+		if (s[s.length - 1].equals("PrintCheckoutRecord.fxml")) {
+			isbnCol.setCellValueFactory(cellData -> cellData.getValue()
+					.isbnProperty());
+			titleCol.setCellValueFactory(cellData -> cellData.getValue()
+					.titlePropery());
+			copyNumCol.setCellValueFactory(cellData -> cellData.getValue()
+					.copyNumPropery());
+			checkoutDateCol.setCellValueFactory(cellData -> cellData.getValue()
+					.checkoutDatePropery());
+			dueDateCol.setCellValueFactory(cellData -> cellData.getValue()
+					.dueDatePropery());
+		}else if (s[s.length - 1].equals("BookOverdue.fxml")) {
+			isbnBOCol.setCellValueFactory(cellData -> cellData.getValue().isbnProperty());
+			titleBOCol.setCellValueFactory(cellData -> cellData.getValue().titlePropery());
+			memberIDBOCol.setCellValueFactory(cellData -> cellData.getValue().memberPropery());
+			checkoutDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
+					.checkoutDatePropery());
+			dueDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
+					.dueDatePropery());
+			
+		}
 	}
 
 	@FXML
@@ -460,8 +531,6 @@ public class WindowsController implements Initializable {
 
 				new PopupMessage("Successful !");
 			} catch (LibrarySystemException ex) {
-				new PopupMessage(ex.getMessage());
-				log.info(ex.getMessage());
 				ex.printStackTrace();
 			}
 		}
@@ -475,6 +544,137 @@ public class WindowsController implements Initializable {
 	private void closeNewBookCopyBtnAction() {
 		commonCloseButtonHandler(closeNewBookCopyBtn);
 	}
+
+	/*
+	 * Dung Le: handle saving a new book
+	 */
+
+	@FXML
+	private void saveNewBookBtnAction() {
+		Book b = SystemController.getInstance().searchBook(
+				isbn.getText().trim());
+		if (b == null) {
+			List<Author> selectedItems = authorListView.getSelectionModel()
+					.getSelectedItems();
+			try {
+				SystemController.getInstance().addBook(isbn.getText(),
+						title.getText(), maxcheckoutlength.getText(),
+						numofcopies.getText(), selectedItems);
+				int numCopies = Integer.parseInt(numofcopies.getText());
+				for (int i = 0; i < numCopies; i++) {
+					SystemController.getInstance().addBookCopy(
+							isbn.getText().trim());
+				}
+				new PopupMessage("Successful !");
+			} catch (LibrarySystemException ex) {
+				ex.printStackTrace();
+			}
+		} else {
+			new PopupMessage("This book exists in our library!");
+		}
+	}
+
+	/*
+	 * Dung Le: handle close form of saving a new book
+	 */
+
+	@FXML
+	private void closeNewBookBtnAction() {
+		commonCloseButtonHandler(closeNewBookBtn);
+	}
+
+	/*
+	 * Dung Le: handle print checkout
+	 */
+
+	@FXML
+	private void printCheckoutBtnAction() {
+		ObservableList<MemberCheckoutRecord> listData = FXCollections
+				.observableArrayList(search(memberID.getText().trim()));
+		checkoutsView.setItems(listData);// if (b == null) {
+		// List<Author> selectedItems = authorListView.getSelectionModel()
+		// .getSelectedItems();
+		// try {
+		// SystemController.getInstance().addBook(isbn.getText(),
+		// title.getText(), maxcheckoutlength.getText(),
+		// numofcopies.getText(), selectedItems);
+		// int numCopies = Integer.parseInt(numofcopies.getText());
+		// for (int i = 0 ; i < numCopies ; i ++){
+		// SystemController.getInstance().addBookCopy(
+		// isbn.getText().trim());
+		// }
+		// new PopupMessage("Successful !");
+		// } catch (LibrarySystemException ex) {
+		// ex.printStackTrace();
+		// }
+		// } else {
+		// new PopupMessage("This book exists in our library!");
+		// }
+	}
+
+	public List<MemberCheckoutRecord> search(String memberId) {
+		DataAccess da = new DataAccessFacade();
+		List<MemberCheckoutRecord> listChkRecord = new ArrayList<MemberCheckoutRecord>();
+		HashMap<String, LibraryMember> memberMap = da.readMemberMap();
+		for (Entry<String, LibraryMember> entry : memberMap.entrySet()) {
+			if (entry.getKey().equals(memberId)) {
+				LibraryMember record = entry.getValue();
+
+				// String isbn = record.get
+				CheckoutRecord crRecord = record.getRecord();
+				List<CheckoutRecordEntry> entries = crRecord.getEntries();
+				for (CheckoutRecordEntry e : entries) {
+					MemberCheckoutRecord mcrRecord = new MemberCheckoutRecord(e
+							.getCopy().getBook().getIsbn(), e.getCopy()
+							.getBook().getTitle(), e.getCopy().getCopyNum()
+							+ "", e.getCheckoutDate(), e.getDueDate());
+					listChkRecord.add(mcrRecord);
+				}
+			}
+		}
+		return listChkRecord;
+	}
+
+	/*
+	 * Dung Le: handle close form of print checkout
+	 */
+
+	@FXML
+	private void closePrintCheckoutBtnAction() {
+		commonCloseButtonHandler(closePrintCheckoutBtn);
+	}
+
+	/*
+	 * Dung Le: handle check book overdue
+	 */
+
+	@FXML
+	private void checkBookOverDueBtnAction() {		
+		Book b = SystemController.getInstance().searchBook(
+				isbn.getText().trim());
+		if (b == null) {
+			new PopupMessage("This book does not exist in our library!");
+		} else {
+			try {
+				SystemController.getInstance().addBookCopy(
+						isbn.getText().trim());
+
+				new PopupMessage("Successful !");
+			} catch (LibrarySystemException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+
+	/*
+	 * Dung Le: handle close form of check book overdue
+	 */
+
+	@FXML
+	private void closeCheckBookOverDueBtnAction() {
+		commonCloseButtonHandler(closeCheckBookOverDueBtn);
+	}
+
 
 
 	/**
