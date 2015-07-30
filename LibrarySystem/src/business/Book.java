@@ -79,11 +79,7 @@ final public class Book implements Serializable {
 				     .map(l -> l.isAvailable())
 				     .reduce(false, (x,y) -> x || y);
 	}
-	@Override
-	public String toString() {
-		return "isbn: " + isbn + ", maxLength: " + maxCheckoutLength + ", available: " + isAvailable();
-	}
-
+	
 	public int getNumCopies() {
 		return copies.length;
 	}
@@ -120,6 +116,12 @@ final public class Book implements Serializable {
 	}
 	public int getMaxCheckoutLength() {
 		return maxCheckoutLength;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [copies=" + copies.length + ", authors=" + authors + ", isbn=" + isbn + ", title="
+				+ title + ", maxCheckoutLength=" + maxCheckoutLength + "]";
 	}
 
 

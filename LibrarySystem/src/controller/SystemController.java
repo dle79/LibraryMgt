@@ -254,7 +254,7 @@ public class SystemController implements ControllerInterface {
 		if (searchBook(isbn) == null) {
 			DataAccess da = new DataAccessFacade();
 			Book book = new Book(isbn, title, maxCheckoutLength, authors);
-			book.addCopy(numOfcopies);
+			book.addCopy(numOfcopies-1);
 			da.saveNewBook(book);
 			return true;
 		} else {
@@ -324,7 +324,7 @@ public class SystemController implements ControllerInterface {
 		return daf.searchMemberByBook(isbn, copyNum);
 	}
 
-	private String getDueDateByMemberAndISBN(LibraryMember member, String isbn) {
+	public String getDueDateByMemberAndISBN(LibraryMember member, String isbn) {
 		List<CheckoutRecordEntry> entries = member.getRecord().getEntries();
 		for (CheckoutRecordEntry entry : entries) {
 			if (entry.getCopy().getBook().getIsbn().equals(isbn)) {
