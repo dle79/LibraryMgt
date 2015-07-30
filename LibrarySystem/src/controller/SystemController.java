@@ -14,6 +14,7 @@ import business.Book;
 import business.BookCopy;
 import business.CheckoutRecord;
 import business.CheckoutRecordEntry;
+import business.CheckoutRecordTableEntry;
 import business.CopyStatus;
 import business.LibraryMember;
 import dataaccess.Auth;
@@ -211,6 +212,26 @@ public class SystemController implements ControllerInterface {
 	public void printCheckoutRecord(String memberId) throws LibrarySystemException {
 		log.info(getCheckoutRecordByMemberId(memberId).toString());
 	}
+
+
+	public List<CheckoutRecordTableEntry> getCheckoutTableEntryByMemberId(String memberId) {
+
+		List<CheckoutRecordTableEntry> checkoutRecordTableEntries = new ArrayList<CheckoutRecordTableEntry>();
+
+		CheckoutRecord crRecord;
+		try {
+			crRecord = getCheckoutRecordByMemberId(memberId);
+			List<CheckoutRecordEntry> entries = crRecord.getEntries();
+				for (CheckoutRecordEntry e : entries) {
+					CheckoutRecordTableEntry mcrRecord = new CheckoutRecordTableEntry(e);
+					checkoutRecordTableEntries.add(mcrRecord);
+				}
+		} catch (LibrarySystemException e) {
+			e.printStackTrace();
+		}
+		return checkoutRecordTableEntries;
+	}
+
 
 	public CheckoutRecord getCheckoutRecordByMemberId(String memberId) throws LibrarySystemException {
 		DataAccess da = new DataAccessFacade();
