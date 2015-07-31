@@ -31,6 +31,7 @@ public class AddNewBook extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			dialogStage.setScene(scene);
 			ListView authorListView = (ListView) scene.lookup("#authorListView");
+			dialogStage.setTitle("Add new book");
 			dialogStage.setResizable(false);
 			List<Author> allAuthors = new ArrayList<Author>() ;
 			allAuthors.add(new Author("Joe", "Thomas", "641-445-2123", new Address("101 S. Main", "Fairfield", "IA", "52556"), "A happy man is he."));

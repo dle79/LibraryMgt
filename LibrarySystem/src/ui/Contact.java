@@ -30,7 +30,7 @@ public class Contact extends Application {
 			scene = new Scene(root);
 			
 			dialogStage.setScene(scene);
-			
+			dialogStage.setTitle("Contact information");
 			dialogStage.setResizable(false);
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();

@@ -26,7 +26,7 @@ public class PrintCheckoutRecord extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			dialogStage.setScene(scene);
 			dialogStage.setResizable(false);
-			
+			dialogStage.setTitle("Print checkout record");
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();
 		} catch(Exception e) {

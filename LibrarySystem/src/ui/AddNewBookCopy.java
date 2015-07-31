@@ -21,7 +21,7 @@ public class AddNewBookCopy extends Application {
 			scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			dialogStage.setScene(scene);
-			
+			dialogStage.setTitle("Add new book copy");
 			dialogStage.setResizable(false);
 			
 			// Show the dialog and wait until the user closes it
