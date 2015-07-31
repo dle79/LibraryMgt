@@ -548,7 +548,7 @@ public class WindowsController implements Initializable {
 						isbn.getText().trim());
 
 				new PopupMessage("Successful !");
-				
+				isbn.setText("");
 			} catch (LibrarySystemException ex) {
 				ex.printStackTrace();
 			}
