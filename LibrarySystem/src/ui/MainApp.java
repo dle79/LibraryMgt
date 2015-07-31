@@ -57,7 +57,7 @@ public class MainApp extends Application {
 			Image imageIcon = new Image(fileIcon.toURI().toURL().toExternalForm());
 
 			primaryStage.getIcons().add(imageIcon);
-//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("applicationMain.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			primaryStage.setResizable(false);
