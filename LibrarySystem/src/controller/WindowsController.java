@@ -30,6 +30,7 @@ import ui.AddCheckoutRecord;
 import ui.AddNewBook;
 import ui.AddNewBookCopy;
 import ui.AddNewMember;
+import ui.Contact;
 import ui.EditLibraryMember;
 import ui.PopupMessage;
 import ui.PrintCheckoutRecord;
@@ -787,4 +788,33 @@ public class WindowsController implements Initializable {
 
 		return libraryMember;
 	}
+
+	/**
+	 * Handle action related to Add Check Out Record to Menu item.
+	 *
+	 * @param event
+	 *            Event on "Add" Check Out Record to menu item.
+	 */
+	@FXML
+	private void handleContactAction(final ActionEvent event) {
+		contactFunctionality();
+	}
+
+	/**
+	 * Perform functionality associated with "Add Checkout record" menu
+	 * selection or CTRL-A.
+	 */
+	private void contactFunctionality() {
+
+		try {
+			Stage stage = (Stage) menuBar.getScene().getWindow();
+			new Contact().start(stage);
+
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	
 }
