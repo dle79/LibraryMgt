@@ -475,9 +475,13 @@ public class WindowsController implements Initializable {
 	@FXML
 	private void addCheckoutRecordBtnAction()
 	{
-		String memberId = memberForCheckoutRecordTfd.getText();
-		String isbn = isbnCehckoutRecordTfd.getText();
-
+		
+		String memberId = memberForCheckoutRecordTfd.getText().trim();
+		String isbn = isbnCehckoutRecordTfd.getText().trim();
+		if(memberId.isEmpty()|| isbn.isEmpty()){
+			new PopupMessage("Please input the information!");
+			return;
+		}
 		ObservableList<CheckoutRecordTableEntry> data = FXCollections.observableArrayList();
 
 		try
@@ -578,6 +582,10 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void saveNewBookCopyBtnAction() {
+		if(isbn.getText().trim().isEmpty()){
+			new PopupMessage("Please input the isbn!");
+			return;
+		}
 		Book b = SystemController.getInstance().searchBook(
 				isbn.getText().trim());
 		if (b == null) {
@@ -611,6 +619,14 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void saveNewBookBtnAction() {
+		if(isbn.getText().trim().trim().isEmpty() ||
+			authorListView.getSelectionModel().getSelectedItems() == null ||
+			maxcheckoutlength.getText().trim().isEmpty() ||
+			numofcopies.getText().trim().isEmpty() ||			
+			title.getText().trim().isEmpty()){
+			new PopupMessage("Please input the information !");
+			return;
+		}
 		Book b = SystemController.getInstance().searchBook(
 				isbn.getText().trim());
 		if(b == null) {
@@ -656,6 +672,10 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void printCheckoutBtnAction() {
+		if(memberID.getText().trim().isEmpty()){
+			new PopupMessage("Please input the member ID!");
+			return;
+		}
 		ObservableList<CheckoutRecordTableEntry> listData = FXCollections
 				.observableArrayList((SystemController.getInstance().getCheckoutTableEntryByMemberId(memberID.getText().trim())));
 		checkoutsView.setItems(listData);// if (b == null) {
@@ -677,6 +697,10 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void checkBookOverDueBtnAction() {
+		if(isbn.getText().trim().isEmpty()){
+			new PopupMessage("Please input the isbn!");
+			return;
+		}
 		Book b = SystemController.getInstance().searchBook(
 				isbn.getText().trim());
 		if (b == null) {
@@ -792,6 +816,10 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void editLibraryMemberSearchBtnAction() {
+		if(editMemberIdTfd.getText().trim().isEmpty()){
+			new PopupMessage("Please input the Member ID");
+			return;
+		}
 		LibraryMember libraryMember = isMemberExisted(editMemberIdTfd.getText());
 
 		if (libraryMember != null) {
