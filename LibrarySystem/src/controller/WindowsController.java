@@ -192,7 +192,6 @@ public class WindowsController implements Initializable {
 	@FXML
 	private TableColumn<CheckoutRecordTableEntry, String> dueDateBOCol;
 
-
 	@FXML
 	private Button closeCheckBookOverDueBtn;
 
@@ -231,12 +230,15 @@ public class WindowsController implements Initializable {
 					.checkoutDatePropery());
 			dueDateCol.setCellValueFactory(cellData -> cellData.getValue()
 					.dueDatePropery());
-		}else if (s[s.length - 1].equals("BookOverdue.fxml")) {
-			isbnBOCol.setCellValueFactory(cellData -> cellData.getValue().isbnProperty());
-			titleBOCol.setCellValueFactory(cellData -> cellData.getValue().titlePropery());
+		} else if (s[s.length - 1].equals("BookOverdue.fxml")) {
+			isbnBOCol.setCellValueFactory(cellData -> cellData.getValue()
+					.isbnProperty());
+			titleBOCol.setCellValueFactory(cellData -> cellData.getValue()
+					.titlePropery());
 			copyNumBOCol.setCellValueFactory(cellData -> cellData.getValue()
 					.copyNumPropery());
-			memberIDBOCol.setCellValueFactory(cellData -> cellData.getValue().memberIDPropery());
+			memberIDBOCol.setCellValueFactory(cellData -> cellData.getValue()
+					.memberIDPropery());
 			dueDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
 					.dueDatePropery());
 
@@ -314,12 +316,12 @@ public class WindowsController implements Initializable {
 	}
 
 	@FXML
-	private void handleMenuItemAction(ActionEvent event){
+	private void handleMenuItemAction(ActionEvent event) {
 		Auth role = sysController.getCurrentAuth();
-		if(role == Auth.LIBRARIAN){
-		checkoutRecordMenuItem.setDisable(true);
-		checkoutMenuItem.setDisable(true);
-		overdueMenuItem.setDisable(true);
+		if (role == Auth.LIBRARIAN) {
+			checkoutRecordMenuItem.setDisable(true);
+			checkoutMenuItem.setDisable(true);
+			overdueMenuItem.setDisable(true);
 		}
 	}
 
@@ -359,16 +361,16 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void saveNewMemberBtnAction() {
-		if(memberStreetTfd.getText().isEmpty() || 
-				memberCityTfd.getText().isEmpty() || 
-				memberStateTfd.getText().isEmpty() ||
-				memberZipTfd.getText().isEmpty() ||
-				memberIdTfd.getText().isEmpty() ||
-				memberFirstNameTfd.getText().isEmpty() ||
-				memberLastNameTfd.getText().isEmpty() ||
-				memberPhoneTfd.getText().isEmpty()){
-				new PopupMessage("Please input data!");
-				return;
+		if (memberStreetTfd.getText().isEmpty()
+				|| memberCityTfd.getText().isEmpty()
+				|| memberStateTfd.getText().isEmpty()
+				|| memberZipTfd.getText().isEmpty()
+				|| memberIdTfd.getText().isEmpty()
+				|| memberFirstNameTfd.getText().isEmpty()
+				|| memberLastNameTfd.getText().isEmpty()
+				|| memberPhoneTfd.getText().isEmpty()) {
+			new PopupMessage("Please input data!");
+			return;
 		}
 		Address address = new Address(memberStreetTfd.getText(),
 				memberCityTfd.getText(), memberStateTfd.getText(),
@@ -386,8 +388,8 @@ public class WindowsController implements Initializable {
 			ex.printStackTrace();
 		}
 	}
-	private void clearTextFieldMember()
-	{
+
+	private void clearTextFieldMember() {
 		memberIdTfd.setText("");
 		memberCityTfd.setText("");
 		memberFirstNameTfd.setText("");
@@ -398,6 +400,7 @@ public class WindowsController implements Initializable {
 		memberStateTfd.setText("");
 		memberZipTfd.setText("");
 	}
+
 	/**
 	 * Handle action related to Add Book to Menu item.
 	 *
@@ -433,15 +436,15 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private TableView<CheckoutRecordTableEntry> addCheckoutRecordTableView;
-	
-	@FXML
-	private TableColumn<CheckoutRecordTableEntry, Integer>  titleAddCheckoutRecordColumn;
-	
-	@FXML
-	private TableColumn<CheckoutRecordTableEntry, Integer>  copyNumAddCheckoutRecordColumn;
 
 	@FXML
-	private TableColumn<CheckoutRecordTableEntry, String>  dateAddCheckoutRecordColumn;
+	private TableColumn<CheckoutRecordTableEntry, Integer> titleAddCheckoutRecordColumn;
+
+	@FXML
+	private TableColumn<CheckoutRecordTableEntry, Integer> copyNumAddCheckoutRecordColumn;
+
+	@FXML
+	private TableColumn<CheckoutRecordTableEntry, String> dateAddCheckoutRecordColumn;
 
 	@FXML
 	private TableColumn<CheckoutRecordTableEntry, String> dueDateAddCheckoutRecordColumn;
@@ -472,39 +475,45 @@ public class WindowsController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+
 	@FXML
-	private void addCheckoutRecordBtnAction()
-	{
-		
+	private void addCheckoutRecordBtnAction() {
+
 		String memberId = memberForCheckoutRecordTfd.getText().trim();
 		String isbn = isbnCehckoutRecordTfd.getText().trim();
-		if(memberId.isEmpty()|| isbn.isEmpty()){
+		if (memberId.isEmpty() || isbn.isEmpty()) {
 			new PopupMessage("Please input the information!");
 			return;
 		}
-		ObservableList<CheckoutRecordTableEntry> data = FXCollections.observableArrayList();
+		ObservableList<CheckoutRecordTableEntry> data = FXCollections
+				.observableArrayList();
 
-		try
-		{
+		try {
 			SystemController.getInstance().checkoutBook(memberId, isbn);
 			new PopupMessage("Successful!");
 
-			CheckoutRecord checkoutRecord = SystemController.getInstance().getCheckoutRecordByMemberId(memberId);
-			for(CheckoutRecordEntry entry : checkoutRecord.getEntries())
-			{
+			CheckoutRecord checkoutRecord = SystemController.getInstance()
+					.getCheckoutRecordByMemberId(memberId);
+			for (CheckoutRecordEntry entry : checkoutRecord.getEntries()) {
 				data.add(new CheckoutRecordTableEntry(entry));
 			}
 
 			addCheckoutRecordTableView.getItems().clear();
 			addCheckoutRecordTableView.setItems(data);
 
-			titleAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, Integer>("title"));
-	        copyNumAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, Integer>("copyNum"));
-	        dateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, String>("checkoutDate"));
-	        dueDateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, String>("dueDate"));
-		}
-		catch(LibrarySystemException ex)
-		{
+			titleAddCheckoutRecordColumn
+					.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, Integer>(
+							"title"));
+			copyNumAddCheckoutRecordColumn
+					.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, Integer>(
+							"copyNum"));
+			dateAddCheckoutRecordColumn
+					.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, String>(
+							"checkoutDate"));
+			dueDateAddCheckoutRecordColumn
+					.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, String>(
+							"dueDate"));
+		} catch (LibrarySystemException ex) {
 			new PopupMessage(ex.getMessage());
 			log.info(ex.getMessage());
 			ex.printStackTrace();
@@ -515,11 +524,9 @@ public class WindowsController implements Initializable {
 	private Button closeAddCheckoutRecordBtn;
 
 	@FXML
-	private void closeAddCheckoutRecordBtnAction()
-	{
+	private void closeAddCheckoutRecordBtnAction() {
 		commonCloseButtonHandler(closeAddCheckoutRecordBtn);
 	}
-
 
 	// Section for printing Check out record
 	/**
@@ -582,7 +589,7 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void saveNewBookCopyBtnAction() {
-		if(isbn.getText().trim().isEmpty()){
+		if (isbn.getText().trim().isEmpty()) {
 			new PopupMessage("Please input the isbn!");
 			return;
 		}
@@ -603,7 +610,6 @@ public class WindowsController implements Initializable {
 		}
 	}
 
-
 	/*
 	 * Dung Le: handle close form of saving a new book copy
 	 */
@@ -619,17 +625,25 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void saveNewBookBtnAction() {
-		if(isbn.getText().trim().trim().isEmpty() ||
-			authorListView.getSelectionModel().getSelectedItems() == null ||
-			maxcheckoutlength.getText().trim().isEmpty() ||
-			numofcopies.getText().trim().isEmpty() ||			
-			title.getText().trim().isEmpty()){
+		if (isbn.getText().trim().trim().isEmpty()
+				|| authorListView.getSelectionModel().getSelectedItems().isEmpty()
+				|| maxcheckoutlength.getText().trim().isEmpty()
+				|| numofcopies.getText().trim().isEmpty()
+				|| title.getText().trim().isEmpty()) {
 			new PopupMessage("Please input the information !");
+			return;
+		}
+		if(!isInteger(maxcheckoutlength.getText().trim())){
+			new PopupMessage("Please input the Max checkout length as number!");
+			return;
+		}
+		if (!isInteger(numofcopies.getText().trim())){
+			new PopupMessage("Please input the Number of Copies as number!");
 			return;
 		}
 		Book b = SystemController.getInstance().searchBook(
 				isbn.getText().trim());
-		if(b == null) {
+		if (b == null) {
 			List<Author> selectedItems = authorListView.getSelectionModel()
 					.getSelectedItems();
 			Author[] arr = selectedItems.toArray(new Author[] {});
@@ -648,8 +662,7 @@ public class WindowsController implements Initializable {
 		}
 	}
 
-	private void clearAddNewBookForm()
-	{
+	private void clearAddNewBookForm() {
 		authorListView.getSelectionModel().clearSelection();
 		maxcheckoutlength.setText("");
 		numofcopies.setText("");
@@ -657,6 +670,7 @@ public class WindowsController implements Initializable {
 		title.setText("");
 
 	}
+
 	/*
 	 * Dung Le: handle close form of saving a new book
 	 */
@@ -672,15 +686,16 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void printCheckoutBtnAction() {
-		if(memberID.getText().trim().isEmpty()){
+		if (memberID.getText().trim().isEmpty()) {
 			new PopupMessage("Please input the member ID!");
 			return;
 		}
 		ObservableList<CheckoutRecordTableEntry> listData = FXCollections
-				.observableArrayList((SystemController.getInstance().getCheckoutTableEntryByMemberId(memberID.getText().trim())));
+				.observableArrayList((SystemController.getInstance()
+						.getCheckoutTableEntryByMemberId(memberID.getText()
+								.trim())));
 		checkoutsView.setItems(listData);// if (b == null) {
 	}
-
 
 	/*
 	 * Dung Le: handle close form of print checkout
@@ -697,7 +712,7 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void checkBookOverDueBtnAction() {
-		if(isbn.getText().trim().isEmpty()){
+		if (isbn.getText().trim().isEmpty()) {
 			new PopupMessage("Please input the isbn!");
 			return;
 		}
@@ -707,18 +722,23 @@ public class WindowsController implements Initializable {
 			new PopupMessage("This book does not exist in our library!");
 		} else {
 			try {
-				List<CopyStatus> copyStatuslist = SystemController.getInstance().getCopyStatusListByISBN(isbn.getText().trim());
+				List<CopyStatus> copyStatuslist = SystemController
+						.getInstance().getCopyStatusListByISBN(
+								isbn.getText().trim());
 				List<CheckoutRecordTableEntry> entries = new ArrayList<CheckoutRecordTableEntry>();
-				for(CopyStatus cs : copyStatuslist){
-					entries.add(new CheckoutRecordTableEntry(cs.getIsbn(), cs.getTitle(), cs.getCopyNum(), cs.getMemberName(), cs.getDueBack()));
+				for (CopyStatus cs : copyStatuslist) {
+					entries.add(new CheckoutRecordTableEntry(cs.getIsbn(), cs
+							.getTitle(), cs.getCopyNum(), cs.getMemberName(),
+							cs.getDueBack()));
 				}
 				ObservableList<CheckoutRecordTableEntry> listData = FXCollections
 						.observableArrayList(entries);
 				boDuesView.setItems(listData);
 
-				if(listData.isEmpty()){
-					new PopupMessage("This book has noThere are no book in overdue !");
-				}else{
+				if (listData.isEmpty()) {
+					new PopupMessage(
+							"This book has noThere are no book in overdue !");
+				} else {
 					new PopupMessage("Successful !");
 				}
 			} catch (LibrarySystemException ex) {
@@ -735,8 +755,6 @@ public class WindowsController implements Initializable {
 	private void closeCheckBookOverDueBtnAction() {
 		commonCloseButtonHandler(closeCheckBookOverDueBtn);
 	}
-
-
 
 	/**
 	 * Perform functionality associated with "Print Checkout Record" menu
@@ -816,7 +834,7 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void editLibraryMemberSearchBtnAction() {
-		if(editMemberIdTfd.getText().trim().isEmpty()){
+		if (editMemberIdTfd.getText().trim().isEmpty()) {
 			new PopupMessage("Please input the Member ID");
 			return;
 		}
@@ -894,5 +912,11 @@ public class WindowsController implements Initializable {
 		}
 	}
 
-
+	public boolean isInteger(String input) {
+		if (input.matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+")) {
+		    return true;
+		} else {
+		    return false;
+		}
+	}
 }
