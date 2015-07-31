@@ -14,15 +14,15 @@
       <menus>
         <Menu fx:id="addMenu" mnemonicParsing="false" onAction="#handleMenuItemAction" text="Add">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#handleAddLibraryMemberAction" text="Library Member" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleAddBookAction" text="Original Book" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleAddBookCopyAction" text="Book Copy" />
+            <MenuItem fx:id="addMemberMenuItem" mnemonicParsing="false" onAction="#handleAddLibraryMemberAction" text="Library Member" />
+                  <MenuItem fx:id="addNewBookMenuItem" mnemonicParsing="false" onAction="#handleAddBookAction" text="Original Book" />
+                  <MenuItem fx:id="addNewBookCopyMenuItem" mnemonicParsing="false" onAction="#handleAddBookCopyAction" text="Book Copy" />
                   <MenuItem fx:id="checkoutMenuItem" mnemonicParsing="false" onAction="#handleAddCheckoutRecordAction" text="Checkout" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#handleEditLibraryMemberAction" text="Library Member" />
+            <MenuItem fx:id="editLibraryMemberMenuItem" mnemonicParsing="false" onAction="#handleEditLibraryMemberAction" text="Library Member" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" onAction="#handleMenuItemAction" text="Search">

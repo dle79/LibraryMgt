@@ -92,6 +92,7 @@ public class LoginWindowController implements Initializable {
 	}
 
 	public Auth getUserAuth() {
+		SystemController.getInstance().setUserAuth(role);
 		return role;
 	}
 

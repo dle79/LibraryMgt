@@ -205,6 +205,18 @@ public class WindowsController implements Initializable {
 	private MenuItem checkoutMenuItem;
 
 	@FXML
+	private MenuItem addMemberMenuItem;
+	
+	@FXML
+	private MenuItem addNewBookMenuItem;
+	
+	@FXML
+	private MenuItem addNewBookCopyMenuItem;
+	
+	@FXML
+	private MenuItem editLibraryMemberMenuItem;
+	
+	@FXML
 	private MenuItem overdueMenuItem;
 
 	private void commonCloseButtonHandler(Button closeButton) {
@@ -242,6 +254,21 @@ public class WindowsController implements Initializable {
 			dueDateBOCol.setCellValueFactory(cellData -> cellData.getValue()
 					.dueDatePropery());
 
+		}else if (s[s.length - 1].equals("LibrarySystem.fxml")) {
+			if(SystemController.getInstance().getUserAuth() == Auth.ADMIN)
+			{
+				checkoutMenuItem.setDisable(true);
+				overdueMenuItem.setDisable(true);
+				checkoutRecordMenuItem.setDisable(true);
+			}
+			else if (SystemController.getInstance().getUserAuth() == Auth.LIBRARIAN)
+			{
+				addMemberMenuItem.setDisable(true);
+				addNewBookMenuItem.setDisable(true);
+				addNewBookCopyMenuItem.setDisable(true);
+				editLibraryMemberMenuItem.setDisable(true);
+				
+			}
 		}
 	}
 

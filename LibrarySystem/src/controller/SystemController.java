@@ -394,4 +394,10 @@ public class SystemController implements ControllerInterface {
 		}
 	}
 
+	public void setUserAuth(Auth auth) {
+		currentAuth = auth;
+	}
+	public Auth getUserAuth() {
+		return currentAuth;
+	}
 }
