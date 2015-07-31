@@ -17,10 +17,10 @@ final public class Author extends Person implements Serializable {
 		this.bio = bio;
 	}
 
-	@Override
-	public String toString() {
-		return super.getLastName() + " " + super.getFirstName();
-	}
+//	@Override
+//	public String toString() {
+//		return super.getLastName() + " " + super.getFirstName();
+//	}
 	
 	/*public String toString() {
 		return "Author [bio=" + bio + ", FirstName=" + getFirstName() + ", LastName=" + getLastName()

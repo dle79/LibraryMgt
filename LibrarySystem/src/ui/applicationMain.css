@@ -3,6 +3,19 @@ root {
     display: block;
 }
 
+.root {
+	-fx-background-image: url("library-pic.jpg");	
+    -fx-background-repeat: stretch stretch;   
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+
+}
+
+#promptLabel{
+	-fx-font-size: 16px;    
+	-fx-text-fill: red;
+}
 
 .label {
     -fx-font-size: 14px;

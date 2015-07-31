@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -573,15 +574,17 @@ public class WindowsController implements Initializable {
 		if(b == null) {
 			List<Author> selectedItems = authorListView.getSelectionModel()
 					.getSelectedItems();
+			Author[] arr = selectedItems.toArray(new Author[] {});
+			
 			try {
 				SystemController.getInstance().addBook(isbn.getText(),
 						title.getText(), maxcheckoutlength.getText(),
-						numofcopies.getText(), selectedItems);
-				int numCopies = Integer.parseInt(numofcopies.getText());
-				for (int i = 0; i < numCopies; i++) {
-					SystemController.getInstance().addBookCopy(
-							isbn.getText().trim());
-				}
+						numofcopies.getText(), arr);
+//				int numCopies = Integer.parseInt(numofcopies.getText());
+//				for (int i = 0; i < numCopies; i++) {
+//					SystemController.getInstance().addBookCopy(
+//							isbn.getText().trim());
+//				}
 				new PopupMessage("Successful !");
 			} catch (LibrarySystemException ex) {
 				ex.printStackTrace();

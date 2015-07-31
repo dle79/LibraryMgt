@@ -9,10 +9,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import business.Address;
 import business.Author;
 
@@ -43,6 +45,27 @@ public class AddNewBook extends Application {
 			
 			authorListView.setItems(authors);
 			authorListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+			authorListView.setCellFactory(new Callback<ListView<Author>, ListCell<Author>>() {
+
+				@Override
+				public ListCell<Author> call(ListView<Author> p) {
+
+					ListCell<Author> cell = new ListCell<Author>() {
+
+						@Override
+						protected void updateItem(Author t, boolean bln) {
+							super.updateItem(t, bln);
+							if (t != null) {
+								setText(t.getFirstName() + " " + t.getLastName());
+							}
+						}
+
+					};
+
+					return cell;
+				}
+			});
+
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();
 		} catch(Exception e) {

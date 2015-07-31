@@ -259,10 +259,10 @@ public class SystemController implements ControllerInterface {
 	 * @return
 	 * @throws LibrarySystemException
 	 */
-	public boolean addBook(String isbn, String title, String maxCheckoutLength, String numOfcopies, List<Author> authors)
+	public boolean addBook(String isbn, String title, String maxCheckoutLength, String numOfcopies, Author[] authors)
 			throws LibrarySystemException {
 		return addBook(isbn, title, Integer.parseInt(maxCheckoutLength), Integer.parseInt(numOfcopies),
-				authors);
+				Arrays.asList(authors));
 	}
 
 	/**
@@ -274,6 +274,7 @@ public class SystemController implements ControllerInterface {
 
 		if (searchBook(isbn) == null) {
 			DataAccess da = new DataAccessFacade();
+			@SuppressWarnings("serial")
 			Book book = new Book(isbn, title, maxCheckoutLength, authors);
 			book.addCopy(numOfcopies-1);
 			da.saveNewBook(book);

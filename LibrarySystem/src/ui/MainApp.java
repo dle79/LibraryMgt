@@ -40,16 +40,16 @@ public class MainApp extends Application {
 		
 		try {
 			VBox root = (VBox)FXMLLoader.load(getClass().getResource("LibrarySystem.fxml"));
-			File file = new File(System.getProperty("user.dir") + "/src/ui/library-pic.jpg");
-
-			Image image = new Image(file.toURI().toURL().toExternalForm());
-			// new BackgroundSize(width, height, widthAsPercentage, heightAsPercentage, contain, cover)
-			BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
-			// new BackgroundImage(image, repeatX, repeatY, position, size)
-			BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-			// new Background(images...)
-			Background background = new Background(backgroundImage);			
-			root.setBackground(background);
+//			File file = new File(System.getProperty("user.dir") + "/src/ui/library-pic.jpg");
+//
+//			Image image = new Image(file.toURI().toURL().toExternalForm());
+//			// new BackgroundSize(width, height, widthAsPercentage, heightAsPercentage, contain, cover)
+//			BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
+//			// new BackgroundImage(image, repeatX, repeatY, position, size)
+//			BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+//			// new Background(images...)
+//			Background background = new Background(backgroundImage);			
+//			root.setBackground(background);
 
 			Scene scene = new Scene(root);
 			File fileIcon = new File(System.getProperty("user.dir") + "/src/ui/library_icon.jpg");
