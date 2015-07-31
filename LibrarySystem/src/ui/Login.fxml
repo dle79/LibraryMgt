@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane prefHeight="289.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
+<GridPane prefHeight="245.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WindowsController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="142.0" />
@@ -19,13 +19,12 @@
    <rowConstraints>
       <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="37.0" minHeight="4.0" prefHeight="4.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="42.0" minHeight="0.0" prefHeight="13.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="63.0" minHeight="8.0" prefHeight="24.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="60.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="42.0" minHeight="0.0" prefHeight="8.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="63.0" minHeight="8.0" prefHeight="48.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <Text id="welcome-text" text="MUM Library System" textAlignment="CENTER" wrappingWidth="533.2783203125" GridPane.columnSpan="2" />
@@ -39,6 +38,6 @@
          </opaqueInsets>
       </Button>
       <Button fx:id="resetBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onKeyReleased="#handleResetBtnOnKeyReleased" onMouseClicked="#handleResetBtn" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-      <Label fx:id="promptLabel" prefHeight="27.0" prefWidth="278.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="8" />
+      <Label fx:id="promptLabel" prefHeight="27.0" prefWidth="278.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5" />
    </children>
 </GridPane>
