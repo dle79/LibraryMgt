@@ -359,6 +359,17 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private void saveNewMemberBtnAction() {
+		if(memberStreetTfd.getText().isEmpty() || 
+				memberCityTfd.getText().isEmpty() || 
+				memberStateTfd.getText().isEmpty() ||
+				memberZipTfd.getText().isEmpty() ||
+				memberIdTfd.getText().isEmpty() ||
+				memberFirstNameTfd.getText().isEmpty() ||
+				memberLastNameTfd.getText().isEmpty() ||
+				memberPhoneTfd.getText().isEmpty()){
+				new PopupMessage("Please input data!");
+				return;
+		}
 		Address address = new Address(memberStreetTfd.getText(),
 				memberCityTfd.getText(), memberStateTfd.getText(),
 				memberZipTfd.getText());
