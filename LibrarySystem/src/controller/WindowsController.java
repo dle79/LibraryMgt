@@ -548,12 +548,14 @@ public class WindowsController implements Initializable {
 						isbn.getText().trim());
 
 				new PopupMessage("Successful !");
+				
 			} catch (LibrarySystemException ex) {
 				ex.printStackTrace();
 			}
 		}
 	}
 
+	
 	/*
 	 * Dung Le: handle close form of saving a new book copy
 	 */
@@ -580,12 +582,8 @@ public class WindowsController implements Initializable {
 				SystemController.getInstance().addBook(isbn.getText(),
 						title.getText(), maxcheckoutlength.getText(),
 						numofcopies.getText(), arr);
-//				int numCopies = Integer.parseInt(numofcopies.getText());
-//				for (int i = 0; i < numCopies; i++) {
-//					SystemController.getInstance().addBookCopy(
-//							isbn.getText().trim());
-//				}
 				new PopupMessage("Successful !");
+				clearAddNewBookForm();
 			} catch (LibrarySystemException ex) {
 				ex.printStackTrace();
 			}
@@ -594,6 +592,15 @@ public class WindowsController implements Initializable {
 		}
 	}
 
+	private void clearAddNewBookForm()
+	{
+		authorListView.getSelectionModel().clearSelection();
+		maxcheckoutlength.setText("");
+		numofcopies.setText("");
+		isbn.setText("");
+		title.setText("");
+		
+	}
 	/*
 	 * Dung Le: handle close form of saving a new book
 	 */
