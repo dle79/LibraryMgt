@@ -422,7 +422,10 @@ public class WindowsController implements Initializable {
 
 	@FXML
 	private TableView<CheckoutRecordTableEntry> addCheckoutRecordTableView;
-
+	
+	@FXML
+	private TableColumn<CheckoutRecordTableEntry, Integer>  titleAddCheckoutRecordColumn;
+	
 	@FXML
 	private TableColumn<CheckoutRecordTableEntry, Integer>  copyNumAddCheckoutRecordColumn;
 
@@ -480,6 +483,7 @@ public class WindowsController implements Initializable {
 			addCheckoutRecordTableView.getItems().clear();
 			addCheckoutRecordTableView.setItems(data);
 
+			titleAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, Integer>("title"));
 	        copyNumAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, Integer>("copyNum"));
 	        dateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, String>("checkoutDate"));
 	        dueDateAddCheckoutRecordColumn.setCellValueFactory(new PropertyValueFactory<CheckoutRecordTableEntry, String>("dueDate"));
