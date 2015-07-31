@@ -3,9 +3,9 @@ package controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import business.Address;
@@ -62,10 +62,6 @@ public class SystemController implements ControllerInterface {
 		}
 		currentAuth = map.get(id).getAuthorization();
 
-	}
-
-	public static Auth getCurrentAuth() {
-		return currentAuth;
 	}
 
 	/**
@@ -263,10 +259,10 @@ public class SystemController implements ControllerInterface {
 	 * @return
 	 * @throws LibrarySystemException
 	 */
-	public boolean addBook(String isbn, String title, String maxCheckoutLength, String numOfcopies, Author[] authors)
+	public boolean addBook(String isbn, String title, String maxCheckoutLength, String numOfcopies, List<Author> authors)
 			throws LibrarySystemException {
 		return addBook(isbn, title, Integer.parseInt(maxCheckoutLength), Integer.parseInt(numOfcopies),
-				Arrays.asList(authors));
+				authors);
 	}
 
 	/**
@@ -278,7 +274,6 @@ public class SystemController implements ControllerInterface {
 
 		if (searchBook(isbn) == null) {
 			DataAccess da = new DataAccessFacade();
-			@SuppressWarnings("serial")
 			Book book = new Book(isbn, title, maxCheckoutLength, authors);
 			book.addCopy(numOfcopies-1);
 			da.saveNewBook(book);
@@ -371,6 +366,8 @@ public class SystemController implements ControllerInterface {
 		return daf.searchAuth(username);
 
 	}
+
+
 
 	public static void main(String[] args) throws LibrarySystemException {
 		try {

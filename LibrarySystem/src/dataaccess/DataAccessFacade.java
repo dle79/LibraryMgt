@@ -65,6 +65,16 @@ public class DataAccessFacade implements DataAccess {
 		}
 	}
 
+	public Auth searchAuth(String username){
+		HashMap<String,User> userMap = readUserMap();
+		for(String userId : userMap.keySet()){
+			if(userId.equalsIgnoreCase(username)){
+				userMap.get(username).getAuthorization();
+			}
+		}
+		return null;
+	}
+
 	public Auth login(String id, String pwd) {
 		HashMap<String, User> userMap = readUserMap();
 		if(!userMap.containsKey(id)) return null;

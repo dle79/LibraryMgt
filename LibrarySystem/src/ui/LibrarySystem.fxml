@@ -12,12 +12,12 @@
   <children>
     <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="Add">
+        <Menu fx:id="addMenu" mnemonicParsing="false" onAction="#handleMenuItemAction" text="Add">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#handleAddLibraryMemberAction" text="Library Member" />
                   <MenuItem mnemonicParsing="false" onAction="#handleAddBookAction" text="Original Book" />
                   <MenuItem mnemonicParsing="false" onAction="#handleAddBookCopyAction" text="Book Copy" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleAddCheckoutRecordAction" text="Checkout" />
+                  <MenuItem fx:id="checkoutMenuItem" mnemonicParsing="false" onAction="#handleAddCheckoutRecordAction" text="Checkout" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
@@ -25,14 +25,14 @@
             <MenuItem mnemonicParsing="false" onAction="#handleEditLibraryMemberAction" text="Library Member" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Search">
+        <Menu mnemonicParsing="false" onAction="#handleMenuItemAction" text="Search">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#handleSearchBookOverdueAction" text="Book Overdue" />                  
+            <MenuItem fx:id="overdueMenuItem" mnemonicParsing="false" onAction="#handleSearchBookOverdueAction" text="Book Overdue" />
           </items>
         </Menu>
-            <Menu mnemonicParsing="false" text="Print">
+            <Menu mnemonicParsing="false" onAction="#handleMenuItemAction" text="Print">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#handlePrintCheckoutRecordAction" text="Checkout Record" />
+                <MenuItem fx:id="checkoutRecordMenuItem" mnemonicParsing="false" onAction="#handlePrintCheckoutRecordAction" text="Checkout Record" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Contact">
