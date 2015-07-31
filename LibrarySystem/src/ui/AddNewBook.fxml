@@ -42,11 +42,11 @@
       <TextField fx:id="maxcheckoutlength" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
       <TextField fx:id="numofcopies" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
       <Label text="Number of copies" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-      <Button fx:id="saveNewBookBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveNewBookBtnAction" prefHeight="40.0" prefWidth="100.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="11">
+      <Button fx:id="saveNewBookBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveNewBookBtnAction" prefHeight="28.0" prefWidth="100.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="11">
          <GridPane.margin>
             <Insets left="100.0" />
          </GridPane.margin></Button>
-      <Button fx:id="closeNewBookBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeNewBookBtnAction" prefHeight="40.0" prefWidth="100.0" text="Close" GridPane.columnIndex="2" GridPane.rowIndex="11">
+      <Button fx:id="closeNewBookBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeNewBookBtnAction" prefHeight="28.0" prefWidth="100.0" text="Close" GridPane.columnIndex="2" GridPane.rowIndex="11">
          <GridPane.margin>
             <Insets left="60.0" />
          </GridPane.margin></Button>
