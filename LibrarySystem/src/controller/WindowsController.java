@@ -255,20 +255,7 @@ public class WindowsController implements Initializable {
 					.dueDatePropery());
 
 		}else if (s[s.length - 1].equals("LibrarySystem.fxml")) {
-			if(SystemController.getInstance().getUserAuth() == Auth.ADMIN)
-			{
-				checkoutMenuItem.setDisable(true);
-				overdueMenuItem.setDisable(true);
-				checkoutRecordMenuItem.setDisable(true);
-			}
-			else if (SystemController.getInstance().getUserAuth() == Auth.LIBRARIAN)
-			{
-				addMemberMenuItem.setDisable(true);
-				addNewBookMenuItem.setDisable(true);
-				addNewBookCopyMenuItem.setDisable(true);
-				editLibraryMemberMenuItem.setDisable(true);
-				
-			}
+			setRoleMenuBar();
 		}
 	}
 
@@ -496,7 +483,7 @@ public class WindowsController implements Initializable {
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new AddCheckoutRecord().start(stage);
-
+			setRoleMenuBar();
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
@@ -587,7 +574,7 @@ public class WindowsController implements Initializable {
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new AddNewBook().start(stage);
-
+			setRoleMenuBar();
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
@@ -603,7 +590,7 @@ public class WindowsController implements Initializable {
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new AddNewBookCopy().start(stage);
-
+			setRoleMenuBar();
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
@@ -721,6 +708,9 @@ public class WindowsController implements Initializable {
 				.observableArrayList((SystemController.getInstance()
 						.getCheckoutTableEntryByMemberId(memberID.getText()
 								.trim())));
+		if(listData.isEmpty()){
+			new PopupMessage("This memberId doesn't exist!");
+		}
 		checkoutsView.setItems(listData);// if (b == null) {
 	}
 
@@ -792,7 +782,7 @@ public class WindowsController implements Initializable {
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new PrintCheckoutRecord().start(stage);
-
+			setRoleMenuBar();
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
@@ -808,7 +798,7 @@ public class WindowsController implements Initializable {
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new SearchBookOverdue().start(stage);
-
+			setRoleMenuBar();
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
@@ -852,7 +842,7 @@ public class WindowsController implements Initializable {
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new EditLibraryMember().start(stage);
-
+			setRoleMenuBar();
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
@@ -932,7 +922,7 @@ public class WindowsController implements Initializable {
 		try {
 			Stage stage = (Stage) menuBar.getScene().getWindow();
 			new Contact().start(stage);
-
+			setRoleMenuBar();
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			e.printStackTrace();
@@ -944,6 +934,30 @@ public class WindowsController implements Initializable {
 		    return true;
 		} else {
 		    return false;
+		}
+	}
+	
+	private void setRoleMenuBar(){
+		checkoutMenuItem.setDisable(false);
+		overdueMenuItem.setDisable(false);
+		checkoutRecordMenuItem.setDisable(false);
+		addMemberMenuItem.setDisable(false);
+		addNewBookMenuItem.setDisable(false);
+		addNewBookCopyMenuItem.setDisable(false);
+		editLibraryMemberMenuItem.setDisable(false);
+		if(SystemController.getInstance().getUserAuth() == Auth.ADMIN)
+		{
+			checkoutMenuItem.setDisable(true);
+			overdueMenuItem.setDisable(true);
+			checkoutRecordMenuItem.setDisable(true);
+		}
+		else if (SystemController.getInstance().getUserAuth() == Auth.LIBRARIAN)
+		{
+			addMemberMenuItem.setDisable(true);
+			addNewBookMenuItem.setDisable(true);
+			addNewBookCopyMenuItem.setDisable(true);
+			editLibraryMemberMenuItem.setDisable(true);
+			
 		}
 	}
 }
