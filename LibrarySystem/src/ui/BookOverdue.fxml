@@ -34,7 +34,7 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="268.0" prefWidth="971.0">
          <children>
-            <TableView fx:id="bookoverDuesView" layoutX="6.0" prefHeight="419.0" prefWidth="971.0">
+            <TableView fx:id="boDuesView" layoutX="6.0" prefHeight="419.0" prefWidth="971.0">
               <columns>
                   <TableColumn fx:id="isbnBOCol" prefWidth="170.0" text="ISBN" />
                   <TableColumn fx:id="titleBOCol" prefWidth="170.0" text="Book Title" />

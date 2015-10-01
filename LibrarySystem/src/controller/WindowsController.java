@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -40,10 +39,9 @@ import business.Author;
 import business.Book;
 import business.CheckoutRecord;
 import business.CheckoutRecordEntry;
-import business.LibraryMember;
 import business.CheckoutRecordTableEntry;
-import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
+import business.CopyStatus;
+import business.LibraryMember;
 import exception.LibrarySystemException;
 import exception.LoginException;
 
@@ -177,15 +175,15 @@ public class WindowsController implements Initializable {
 	private TableColumn<CheckoutRecordTableEntry, String> memberIDCol;
 	// Attributes for add new book (look at BookOverDue.fxml)
 	@FXML
-	TableView<CheckoutRecordTableEntry> bookoverduesView;
+	private TableView<CheckoutRecordTableEntry> boDuesView;
 	@FXML
 	private TableColumn<CheckoutRecordTableEntry, String> isbnBOCol;
 	@FXML
 	private TableColumn<CheckoutRecordTableEntry, String> titleBOCol;
 	@FXML
 	private TableColumn<CheckoutRecordTableEntry, String> memberIDBOCol;
-	//@FXML
-	//private TableColumn<BookOverdueRecord, String> checkoutDateBOCol;
+	@FXML
+	private TableColumn<CheckoutRecordTableEntry, String> copyNumBOCol;
 	@FXML
 	private TableColumn<CheckoutRecordTableEntry, String> dueDateBOCol;
 
@@ -612,8 +610,8 @@ public class WindowsController implements Initializable {
 
 	/*
 	 * Dung Le: handle check book overdue
-	 */
-
+	 */	
+	
 	@FXML
 	private void checkBookOverDueBtnAction() {
 		Book b = SystemController.getInstance().searchBook(
@@ -622,9 +620,14 @@ public class WindowsController implements Initializable {
 			new PopupMessage("This book does not exist in our library!");
 		} else {
 			try {
-				SystemController.getInstance().addBookCopy(
-						isbn.getText().trim());
-
+				List<CopyStatus> copyStatuslist = SystemController.getInstance().getCopyStatusListByISBN(isbn.getText().trim());
+				List<CheckoutRecordTableEntry> entries = new ArrayList<CheckoutRecordTableEntry>();
+				for(CopyStatus cs : copyStatuslist){
+					entries.add(new CheckoutRecordTableEntry(cs.getIsbn(), cs.getTitle(), cs.getCopyNum(), cs.getMemberName(), cs.getDueBack()));
+				}
+				ObservableList<CheckoutRecordTableEntry> listData = FXCollections
+						.observableArrayList(entries);
+				boDuesView.setItems(listData);
 				new PopupMessage("Successful !");
 			} catch (LibrarySystemException ex) {
 				ex.printStackTrace();

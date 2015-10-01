@@ -13,11 +13,12 @@ public class CheckoutRecordTableEntry {
 	private final SimpleStringProperty memberID = new SimpleStringProperty("");
 	
 	// Constructor for Due Date
-	public CheckoutRecordTableEntry(String isbn, String title, String memberID, String dueDate) {
+	public CheckoutRecordTableEntry(String isbn, String title, String copyNum, String memberID, String dueDate) {
 		this.isbn.set(isbn);
 		this.memberID.set(memberID);
 		this.title.set(title);
 		this.dueDate.set(dueDate);
+		this.copyNum.set(copyNum);
 	}
 	
 	// Constructor for both CheckoutRecord and Search
